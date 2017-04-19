@@ -1,53 +1,53 @@
-# FOUNDATIONS session 5
+# FOUNDATIONS session 6
 
 ## Homework
 
-1. Use the Toggle Device tool in Chrome dev tools to view the page on an iPhone 5. Edit the CSS to make the nav bar fit without effecting the wide screen view.
-2. Using the techniques in [Session3's ReadMe](https://github.com/front-end-foundations/session3) add a close button and overlay to the Beta info button.
+
 
 ## Reading
 
-* [SASS for Web Designers](https://abookapart.com/products/sass-for-web-designers) - continue reading
+* [SASS for Web Designers](https://abookapart.com/products/sass-for-web-designers) - finish reading
 
 ## Node Package Manager Review
 
-[Node](https://nodejs.org/en/)
-
-[Node Package Manager](https://www.npmjs.com) 
-
 ```
-$ cd <PATH> // copy and paste the folder you want to go to
-$ ls 
-$ls -al  // flags expand the command
-$ pwd
+$ pwd // print working directory - where am I?
+$ cd <PATH> // session6
+$ ls // list the files
 ```
 
-NB - Tab completion, `..` and copy paste.
-
-Last class we ran:
+Review `npm init` and npm install:
 
 ```
-$ cd <session-5> // or copy and paste the folder you want to go to
 $ npm init
 $ npm install browser-sync --save
 ```
 
-to create package.json and install [Browser Sync](https://www.browsersync.io)  into the node_modules folder.
+Creates package.json and installs [Browser Sync](https://www.browsersync.io)  into the node_modules folder.
 
-Review `npm init` and npm install.
+#### Today
 
-We created two scripts:
+We will have Koala as a fallback for those who are not on laptops.
+
+Download [Koala app](http://koala-app.com)
+
+
+
+```
+$ npm install
+```
+
+Remove one of the two scripts:
 
 ```
   "scripts": {
-    "start": "browser-sync start --browser \"google chrome\" --server 'app' --files 'app'",
-    "startUp": "browser-sync start --browser \"google chrome\" --server 'definition-list' --files 'definition-list'"
+    "start": "browser-sync start --browser \"google chrome\" --server 'app' --files 'app'"
   },
 ```
 
-[Documentation](https://browsersync.io/docs) for Browser Sync commands.
-
-Which can be run from the terminal using:
+```
+$ npm install --save-dev node-sass
+```
 
 ```
 $ npm run start
