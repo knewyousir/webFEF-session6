@@ -25,7 +25,45 @@ $ npm install browser-sync --save
 
 Creates package.json and installs [Browser Sync](https://www.browsersync.io)  into the node_modules folder.
 
-#### Today
+## SASS
+
+[Syntactically Awesome Style Sheets](https://sass-lang.com) - takes sass files and converts (compiles) them into css. 
+
+SASS [adds features](http://sass-lang.com/guide) to css.
+
+### Free Apps
+
+(Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
+
+[Koala](http://koala-app.coms)
+
+[Scout app](https://github.com/scout-app/scout-app/)
+
+For Scout the setup includes creating and input folder for sass and an output folder for css.
+
+### Paid Options
+
+[Codekit](https://codekitapp.com/) - Mac 
+
+[Prepros](https://prepros.io/) - Windows
+
+###Imports
+
+Compare
+
+```css
+@import url(iimports/futura/stylesheet.css);
+```
+
+```css
+@import 'reset';
+```
+
+Examine base.css. The first makes the css available to the browser but keeps them in separate files. The second takes the contents of the files and brings - or compiles - it into one css file.
+
+
+
+
 
 We will use Koala as a fallback for those who are not on laptops.
 
