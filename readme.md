@@ -99,16 +99,20 @@ For Scout the setup includes creating and input folder for sass and an output fo
 [Prepros](https://prepros.io/) - Windows
 
 
-###Imports
+### Imports
 
 Save `styles.css` as a SASS file: `structure.scss` into a newly created `imports` folder in `session6`.
 
-Create `styles.scss` in the `sass` folder:
+Create `styles.scss` in the `sass` folder.
+
+Remove: `@import url(font-face.css);`
 
 ```
 @import 'imports/font-face';
 @import 'imports/structure';
 ```
+
+Start and configure Scout.
 
 Compare css imports with `font-face.css`:
 
@@ -132,7 +136,6 @@ Scout allows us to add a reset:
 @import "normalize";
 @import 'imports/font-face';
 @import 'imports/structure';
-@import 'imports/popover';
 ```
 
 Let's move the popover content into imports as `_popover.scss` and import it using `styles.scss`:
@@ -144,7 +147,9 @@ Let's move the popover content into imports as `_popover.scss` and import it usi
 @import 'imports/popover';
 ```
 
-Continue breaking out _structure.scss into separate modules.
+Continue breaking out _structure.scss into separate modules as we step through the review.
+
+Note: Package manager install Sass.
 
 
 ## Review Basilica
@@ -183,7 +188,7 @@ Note the use of margin on the body element. We applied it to a div in the past.
 }
 ```
 
-## Review Flex columns
+### Review Flex columns
 
 Applies only to widescreen view.
 
@@ -215,23 +220,9 @@ See [flex property](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) - w
 
 Note also: the transition property on the anchors. 
 
-Note the use of svg for the background image. Examine the svg in Sublime text.
-
-```
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
-    <defs>
-        <style>.cls-1{fill:#f38f40;}</style>
-        <filter id="f1" x="0" y="0">
-            <feOffset result = "offOut" in = "SourceAlpha"  dx="1" dy="1" />
-            <feGaussianBlur result = "blurOut" in = "offOut" stdDeviation="1" />
-            <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
-        </filter>
-    </defs>
-    <title>Artboard 1-toc</title>
-    <polygon class="cls-1" points="32.05 19.85 33.89 18 32.05 16.15 33.35 13.89 31.09 12.58 31.64 10.05 29 9.38 29 7 26.62 7 25.95 4.36 23.42 4.97 22.11 2.68 19.85 3.97 18 2.11 16.15 3.96 13.89 2.65 12.58 4.91 10.05 4.36 9.38 7 7 7 7 9.38 4.36 10.05 4.97 12.58 2.68 13.89 3.97 16.15 2.11 18 3.96 19.85 2.65 22.11 4.91 23.42 4.36 25.95 7 26.62 7 29 9.38 29 10.05 31.64 12.58 31.03 13.89 33.32 16.15 32.03 18 33.89 19.85 32.04 22.11 33.35 23.42 31.09 25.95 31.64 26.62 29 29 29 29 26.62 31.64 25.95 31.03 23.42 33.32 22.11 32.05 19.85" filter="url(#f1)"/></svg>
-```
-
 ### Review Header branding responsive design
+
+Nest it.
 
 Small screen:
 
@@ -259,7 +250,25 @@ Large screen:
 }
 ```
 
+Note the use of svg for the background image. Examine the svg in Sublime text.
+
+```
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+    <defs>
+        <style>.cls-1{fill:#f38f40;}</style>
+        <filter id="f1" x="0" y="0">
+            <feOffset result = "offOut" in = "SourceAlpha"  dx="1" dy="1" />
+            <feGaussianBlur result = "blurOut" in = "offOut" stdDeviation="1" />
+            <feBlend in = "SourceGraphic" in2 = "blurOut" mode = "normal"/>
+        </filter>
+    </defs>
+    <title>Artboard 1-toc</title>
+    <polygon class="cls-1" points="32.05 19.85 33.89 18 32.05 16.15 33.35 13.89 31.09 12.58 31.64 10.05 29 9.38 29 7 26.62 7 25.95 4.36 23.42 4.97 22.11 2.68 19.85 3.97 18 2.11 16.15 3.96 13.89 2.65 12.58 4.91 10.05 4.36 9.38 7 7 7 7 9.38 4.36 10.05 4.97 12.58 2.68 13.89 3.97 16.15 2.11 18 3.96 19.85 2.65 22.11 4.91 23.42 4.36 25.95 7 26.62 7 29 9.38 29 10.05 31.64 12.58 31.03 13.89 33.32 16.15 32.03 18 33.89 19.85 32.04 22.11 33.35 23.42 31.09 25.95 31.64 26.62 29 29 29 29 26.62 31.64 25.95 31.03 23.42 33.32 22.11 32.05 19.85" filter="url(#f1)"/></svg>
+```
+
 ### Review Navigation Flexbox
+
+Create a Sass import with nesting.
 
 Basic [usage](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
@@ -328,14 +337,125 @@ nav a {
 
 ## Responsive 
 
+Hide the nav p on small screens.
+
+Not:
+
 ```
-@media (min-width: 360px){
+@media (max-width: 360px){
     nav p {
         display: none;
     }
 }
 ```
 
+But:
+
+```
+  p {
+    display: none;
+  }
+
+  @media (min-width: 360px){
+    p {
+      display: block;
+      margin-right: auto;
+    }
+  }
+```
+
+and finally:
+
+```
+  p {
+    display: none;
+
+    @media (min-width: 360px){
+      display: block;
+      margin-right: auto;
+    }
+  }
+```
+
+Compare the css with the scss.
+
+Variables for breakpoints and colors.
+
+Example:
+
+```
+$break-five: 81.25em;
+// 1300px
+$break-four: 71.25em;
+// 1140
+$break-three: 61.25em;
+// 980
+$break-two: 46.25em;
+// 760
+$break-one: 22.5em;
+// 360
+
+$radius: .25rem;
+
+$fonts: 'Source Sans Pro', Helvetica, Clean, sans-serif;
+
+
+// 67.5rem    1080px
+// 1.125rem   18px
+// 1rem       16px
+// 0.875rem   14px
+// .75rem     12px
+
+$link: #007eb6;
+$cyan: #00aeef;
+$cyan10: #e2f4fd;
+$blue100: #003366;
+$blue50: #5997b1;
+$webdarkcyan: #006991;
+$specialblue: #007eb6;
+$text: #444;
+$caption: #808285;
+$borders: #dcdcdc;
+$borders-callout: #820064;
+$lightgray: #F2F2F1;
+$gray10: #ebeced;
+$gray25: #d0d2d3;
+$gray50: #abacad;
+$gray75: #808285;
+$gray100: #585858;
+$fushia100: #820064;
+$green100: #339548;
+$red100: #cc3333;
+
+
+$blk-100: rgba(0,0,0,1); 
+$blk-095: rgba(0,0,0,0.95);
+$blk-090: rgba(0,0,0,0.90);
+$blk-085: rgba(0,0,0,0.85);
+$blk-080: rgba(0,0,0,0.80);
+$blk-075: rgba(0,0,0,0.75);
+$blk-070: rgba(0,0,0,0.70);
+$blk-065: rgba(0,0,0,0.65);
+$blk-060: rgba(0,0,0,0.60);
+$blk-055: rgba(0,0,0,0.55);
+$blk-050: rgba(0,0,0,0.50);
+$blk-040: rgba(0,0,0,0.40);
+$blk-010: rgba(0,0,0,0.10);
+
+$gray-100: rgba(51,51,51,1); 
+$gray-095: rgba(51,51,51,0.95);
+$gray-090: rgba(51,51,51,0.90);
+$gray-085: rgba(51,51,51,0.85);
+$gray-080: rgba(51,51,51,0.80);
+$gray-075: rgba(51,51,51,0.75);
+$gray-070: rgba(51,51,51,0.70);
+$gray-065: rgba(51,51,51,0.65);
+$gray-060: rgba(51,51,51,0.60);
+$gray-055: rgba(51,51,51,0.55);
+$gray-050: rgba(51,51,51,0.50);
+$gray-040: rgba(51,51,51,0.40);
+$gray-010: rgba(51,51,51,0.10);
+```
 
 
 
