@@ -27,9 +27,14 @@ Creates package.json and installs [Browser Sync](https://www.browsersync.io)  in
 
 #### Today
 
-We will have Koala as a fallback for those who are not on laptops.
+We will use Koala as a fallback for those who are not on laptops.
 
-Download [Koala app](http://koala-app.com)
+Download [Koala app](http://koala-app.com) (warning - its a bit of a funky download and can be difficult to quit). You may have to right click on the application to run it the first time.
+
+Start Koala and drap the App folder into it. It will find any files it feels might be relevant. (There are none currently.)
+
+Save `styles.css` as a SASS file: `structure.scss` into a newly created `imports` folder in css.
+
 
 
 
@@ -68,112 +73,19 @@ Note the --save, that created an entry in package.json.
 `npm install` 
 
 
-## Definition List - JavaScript Review
+## Homework: JavaScript Review
 
-Popover div:
-
-```
-<div class="popover">
-    <img src="img/1-lg.jpg" />
-</div>
-```
-
-Styles:
+## Homework: Responsive 
 
 ```
-.popover {
-    position: absolute;
-    top: 30%;
-    display: none;
-}
-.showme {
-    display: block;
+@media (min-width: 360px){
+    nav p {
+        display: none;
+    }
 }
 ```
 
-Select one of the links:
 
-```
-var linkedImage = document.querySelector('a')
-console.log(linkedImage)
-```
-
-Edit to select ALL of the links:
-
-```
-var linkedImages = document.querySelectorAll('a')
-console.log(linkedImages)
-```
-
-use `.forEach` to attach an event listener to each link:
-
-```
-var linkedImages = document.querySelectorAll('a')
-var imageLinks = [...linkedImages]
-imageLinks.forEach( imageLink => imageLink.addEventListener('click', run))
-
-function run() {
-event.preventDefault();
-}
-```
-
-Now we need to create a reference to the popover:
-
-```
-var popover = document.querySelector('.popover')
-var popoverImage = popover.querySelector('.popover img')
-```
-
-Note the second line where we use popover.querySelector instead of document.querySelector.
-
-Change the src attribute for the popoverImage _and_ toggle the showme class on the popover:
-
-<!-- ```
-function run() {
-    popoverImage.setAttribute('src', this.href)
-    popover.classList.toggle('showme')
-    event.preventDefault();
-}
-```
-
-### Overlay
-
-```
-<body>
-<div class="overlay"></div>
-```
-
-Create the overlay CSS:
-
-```
-.overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-``` -->
-
-Here is the entire JavaScript:
-
-```
-var popover = document.querySelector('.popover')
-var popoverImage = popover.querySelector('.popover img')
-
-var linkedImages = document.querySelectorAll('a')
-var imageLinks = [...linkedImages]
-imageLinks.forEach( imageLink => imageLink.addEventListener('click', run))
-
-function run() {
-    popoverImage.setAttribute('src', this.href)
-    popover.classList.toggle('showme')
-    event.preventDefault();
-}
-```
 
 
 ## Basilica
