@@ -6,7 +6,7 @@
   box-sizing: border-box; }
 
 ::selection {
-  background: #88a308;;
+  background: #88a308;
   color: #fff; }
 
 body {
@@ -17,7 +17,7 @@ body {
   margin-top: 24px; }
 
 h2, h3 {
-  color: #88a308;;
+  color: #88a308;
   margin: 8px 0;
   font-size: 1.4rem;
   letter-spacing: -1px; }
@@ -44,7 +44,7 @@ img {
 header {
   position: relative;
   height: 120px;
-  background: #88a308;;
+  background: #88a308;
   border-radius: 8px 8px 0 0; }
 
 header h1 {
@@ -117,7 +117,7 @@ nav a {
   background: linear-gradient(to bottom, #344e8b 1%, #6f89c7 100%); }
 
 .content a:hover {
-  color: #88a308;; }
+  color: #88a308; }
 
 article, aside {
   padding: 1rem; }
