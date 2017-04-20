@@ -1,6 +1,4 @@
 @import url(futura/stylesheet.css);
-html {
-  --basil-green: #88a308; }
 
 * {
   margin: 0;
@@ -8,7 +6,7 @@ html {
   box-sizing: border-box; }
 
 ::selection {
-  background: var(--basil-green);
+  background: #88a308;;
   color: #fff; }
 
 body {
@@ -19,7 +17,7 @@ body {
   margin-top: 24px; }
 
 h2, h3 {
-  color: var(--basil-green);
+  color: #88a308;;
   margin: 8px 0;
   font-size: 1.4rem;
   letter-spacing: -1px; }
@@ -46,7 +44,7 @@ img {
 header {
   position: relative;
   height: 120px;
-  background: var(--basil-green);
+  background: #88a308;;
   border-radius: 8px 8px 0 0; }
 
 header h1 {
@@ -119,13 +117,13 @@ nav a {
   background: linear-gradient(to bottom, #344e8b 1%, #6f89c7 100%); }
 
 .content a:hover {
-  color: var(--basil-green); }
+  color: #88a308;; }
 
 article, aside {
   padding: 1rem; }
 
 footer {
-  background: var(--basil-green);
+  background: #88a308;
   padding: 1rem;
   border-radius: 0 0 4px 4px; }
 
@@ -185,4 +183,3 @@ footer {
 .show {
   display: block !important; }
 
-/*# sourceMappingURL=styles.css.map */
