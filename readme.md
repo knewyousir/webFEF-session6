@@ -395,16 +395,15 @@ $break-two: 46.25em;
 $break-one: 22.5em;
 // 360
 
-$radius: .25rem;
-
-$fonts: 'Source Sans Pro', Helvetica, Clean, sans-serif;
-
-
+//ADDITIONAL CONVERSIONS
 // 67.5rem    1080px
 // 1.125rem   18px
 // 1rem       16px
 // 0.875rem   14px
 // .75rem     12px
+$radius: .25rem;
+
+$fonts: 'Source Sans Pro', Helvetica, Clean, sans-serif;
 
 $link: #007eb6;
 $cyan: #00aeef;
@@ -456,6 +455,20 @@ $gray-050: rgba(51,51,51,0.50);
 $gray-040: rgba(51,51,51,0.40);
 $gray-010: rgba(51,51,51,0.10);
 ```
+
+## Use NPM for Sass Processing
+
+Example only (not set up for our files):
+
+```
+  "scripts": {
+    "watch-node-sass": "node-sass --watch scss/styles.scss --output public/css/  --source-map true",
+    "start": "browser-sync start --browser \"google chrome\" --server 'public' --files 'public'",
+    "boom!": "concurrently \"npm run start\" \"npm run watch-node-sass\" "
+  },
+```
+
+Note - maps.
 
 
 
