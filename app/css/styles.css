@@ -1,9 +1,5 @@
 @import url(futura/stylesheet.css);
 
-.test {
-  color: red;
-}
-
 html {
   --basil-green: #88a308;
   --breakpoint: 640px;
@@ -135,8 +131,6 @@ article, aside {
   padding: 1rem;
 }
 
-
-
 h2, h3 {
     color: var(--basil-green);
     margin: 8px 0;
@@ -165,8 +159,6 @@ article li, article ol {
     margin-left: 1rem;
     margin-bottom: 0.5rem;
 }
-
-
 
 @media (min-width: 640px){
   .content {

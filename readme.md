@@ -67,21 +67,23 @@ Then try this to center the box:
 
 `left:calc(50% - 100px);`
 
+Add `display: none` to the beta window and the show class to the css
+
+```css
+.show {
+    display: block;
+}
+```
+
 Code the .beta button to show the window.
 
 ```js
 var popoverWindow = document.querySelector('.betainfo')
 var betaButton = document.querySelector('.beta')
-// var popoverCloseButton = document.querySelector('.closer')
-// var shader = document.querySelector('.shader')
 betaButton.addEventListener('click', showPopover)
-// popoverCloseButton.addEventListener('click', showPopover)
-// shader.addEventListener('click', showPopover)
 
 function showPopover(){
-    // console.log(this)
     popoverWindow.classList.toggle('show')
-    // shader.classList.toggle('show')
     event.preventDefault()
 }
 ```
@@ -115,9 +117,43 @@ Style it:
 }
 ```
 
-Here's the script:
+Add functionality to the JavaScript:
+
+```js
+var popoverWindow = document.querySelector('.betainfo')
+var betaButton = document.querySelector('.beta')
+var popoverCloseButton = document.querySelector('.closer')
+betaButton.addEventListener('click', showPopover)
+popoverCloseButton.addEventListener('click', showPopover)
+
+function showPopover(){
+    popoverWindow.classList.toggle('show')
+    event.preventDefault()
+}
+```
+
+Add a shader to block access to the page and make the window modal:
 
 ```html
+<div class="shader"></div>
+```
+
+Add styling:
+
+```css
+.shader {
+    position: absolute;
+    top: 0;
+    background: rgba(0,0,0,0.5);
+    height: 100vh;
+    width: 100vw;
+    display: none;
+}
+```
+
+Add it to the script:
+
+```js
 <script>
     var popoverWindow = document.querySelector('.betainfo')
     var betaButton = document.querySelector('.beta')
@@ -128,12 +164,10 @@ Here's the script:
     shader.addEventListener('click', showPopover)
 
     function showPopover(){
-        console.log(this)
         popoverWindow.classList.toggle('show')
         shader.classList.toggle('show')
         event.preventDefault()
     }
-</script>
 ```
 
 
