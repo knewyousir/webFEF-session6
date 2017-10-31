@@ -2,18 +2,22 @@
 
 ## Homework
 
+Build a modal window of your own using [this article](https://css-tricks.com/receding-background-modal-boxes/) as a guide. Here is the [finished sample](http://lab.hakim.se/avgrund/).
 
+```css
+box-shadow: 0px 0px 20px rgba( 0, 0, 0, 0.6 );
+-webkit-filter: blur(5px) grayscale(50%);
+```
 
 ## Reading
 
 * [SASS for Web Designers](https://abookapart.com/products/sass-for-web-designers) - finish reading
 
-
-## Node Package Manager Review
+## Node Package Manager
 
 ```sh
-$ cd <PATH> // session6
-$ pwd // print working directory - where am I?
+$ cd <PATH> 
+$ pwd // print working directory 
 $ ls // list the files
 ```
 
@@ -29,7 +33,7 @@ $ npm install browser-sync --save-dev
 Create the NPM script:
 
 ```js
-"startSync": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'",
+"startSync": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
 ```
 
 And run the process:
@@ -44,28 +48,25 @@ Build the popover window:
 
 ```html
 <div class="betainfo">
+    <h2>In Beta</h2>
     <p>Information about the beta program.<p>
 </div>
 ```
 
 ```css
 .betainfo {
-    width: 200px;
-    height: 100px;
+    width: 50%;
     padding: 1rem;
     background: #fff;
     border: 2px solid #eabc5a;
     border-radius: 0.25rem;
-    position: absolute;
+    position: fixed;
     z-index: 2000;
-    top: 100px;
+    top: 50%;
     left: 50%;
+    margin: -25% 0 0 -25%;
 }
 ```
-
-Then try this to center the box:
-
-`left:calc(50% - 100px);`
 
 Add `display: none` to the beta window and the show class to the css
 
@@ -94,6 +95,7 @@ Add html to the betainfo:
 
 ```html
 <div class="betainfo">
+    <h2>In Beta</h2>
     <p>Information about the beta program.<p>
     <a class="closer" href="#0">X</a>
 </div>
@@ -113,7 +115,6 @@ Style it:
     border-radius: 50%;
     text-align: center;
     line-height: 1.5rem;
-    font-weight: bold;
 }
 ```
 
@@ -144,6 +145,7 @@ Add styling:
 .shader {
     position: absolute;
     top: 0;
+    left: 0;
     background: rgba(0,0,0,0.5);
     height: 100vh;
     width: 100vw;
