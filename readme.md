@@ -11,7 +11,7 @@
 
 ## Node Package Manager Review
 
-```
+```sh
 $ cd <PATH> // session6
 $ pwd // print working directory - where am I?
 $ ls // list the files
@@ -19,38 +19,105 @@ $ ls // list the files
 
 Review `npm init` and npm install:
 
-```
+```sh
 $ npm init
-$ npm install browser-sync --save
+$ npm install browser-sync --save-dev
 ```
 
 `npm init` creates `package.json` and installs [Browser Sync](https://www.browsersync.io)  into the `node_modules` folder.
 
-Since we already have a `package.json` we need only run:
+Create the NPM script:
 
-```
-$ npm install
-```
-
-Remove one of the two scripts (it is no longer necessary):
-
-```
-  "scripts": {
-    "start": "browser-sync start --browser \"google chrome\" --server 'app' --files 'app'"
-  },
+```js
+"startSync": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'",
 ```
 
-```
-$ npm run start
+And run the process:
+
+```sh
+$ npm run startSync
 ```
 
-## Homework: JavaScript Review
+## JavaScript
 
-Examine the behavior in the browser. 
+Build the popover window:
+
+```html
+<div class="betainfo">
+    <p>Information about the beta program.<p>
+</div>
+```
+
+```css
+.betainfo {
+    width: 200px;
+    height: 100px;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #eabc5a;
+    border-radius: 0.25rem;
+    position: absolute;
+    z-index: 2000;
+    top: 100px;
+    left: 50%;
+}
+```
+
+Then try this to center the box:
+
+`left:calc(50% - 100px);`
+
+Code the .beta button to show the window.
+
+```js
+var popoverWindow = document.querySelector('.betainfo')
+var betaButton = document.querySelector('.beta')
+// var popoverCloseButton = document.querySelector('.closer')
+// var shader = document.querySelector('.shader')
+betaButton.addEventListener('click', showPopover)
+// popoverCloseButton.addEventListener('click', showPopover)
+// shader.addEventListener('click', showPopover)
+
+function showPopover(){
+    // console.log(this)
+    popoverWindow.classList.toggle('show')
+    // shader.classList.toggle('show')
+    event.preventDefault()
+}
+```
+
+### Another Close Method
+
+Add html to the betainfo:
+
+```html
+<div class="betainfo">
+    <p>Information about the beta program.<p>
+    <a class="closer" href="#0">X</a>
+</div>
+```
+
+Style it:
+
+```css
+.closer {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fff;
+    border: 2px solid #eabc5a;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5rem;
+    font-weight: bold;
+}
+```
 
 Here's the script:
 
-```
+```html
 <script>
     var popoverWindow = document.querySelector('.betainfo')
     var betaButton = document.querySelector('.beta')
