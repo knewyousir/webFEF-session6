@@ -280,52 +280,7 @@ header {
 
 
 
-
-
-
-## Responsive 
-
-Hide the nav p on small screens.
-
-Not:
-
-```
-@media (max-width: 360px){
-    nav p {
-        display: none;
-    }
-}
-```
-
-But:
-
-```
-  p {
-    display: none;
-  }
-
-  @media (min-width: 360px){
-    p {
-      display: block;
-      margin-right: auto;
-    }
-  }
-```
-
-and finally:
-
-```
-  p {
-    display: none;
-
-    @media (min-width: 360px){
-      display: block;
-      margin-right: auto;
-    }
-  }
-```
-
-Compare the css with the scss.
+## NOTES
 
 Variables for breakpoints and colors.
 
@@ -404,23 +359,6 @@ $gray-040: rgba(51,51,51,0.40);
 $gray-010: rgba(51,51,51,0.10);
 ```
 
-## Use NPM for Sass Processing
-
-Example only (not set up for our files):
-
-```
-  "scripts": {
-    "watch-node-sass": "node-sass --watch scss/styles.scss --output public/css/  --source-map true",
-    "start": "browser-sync start --browser \"google chrome\" --server 'public' --files 'public'",
-    "boom!": "concurrently \"npm run start\" \"npm run watch-node-sass\" "
-  },
-```
-
-Note - maps.
-
-
-
-## NOTES
 
 
 
