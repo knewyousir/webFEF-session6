@@ -2,7 +2,7 @@
 
 ## Homework
 
-Build a modal window of your own using [this article](https://css-tricks.com/receding-background-modal-boxes/) as a guide. Here is the [finished sample](http://lab.hakim.se/avgrund/).
+Examine the modal window in [this article](https://css-tricks.com/receding-background-modal-boxes/). Here is the [finished sample](http://lab.hakim.se/avgrund/). Try to incorporate the following css properties into the modal we worked on in class.
 
 ```css
 box-shadow: 0px 0px 20px rgba( 0, 0, 0, 0.6 );
