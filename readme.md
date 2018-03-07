@@ -1,23 +1,26 @@
-# FOUNDATIONS session 6
+# VI - Basilica!
 
 ## Homework
 
 Examine the modal window in [this article](https://css-tricks.com/receding-background-modal-boxes/). Here is the [finished sample](http://lab.hakim.se/avgrund/). Try to incorporate the following css properties into the modal we worked on in class.
 
 ```css
-box-shadow: 0px 0px 20px rgba( 0, 0, 0, 0.6 );
+box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
 -webkit-filter: blur(5px) grayscale(50%);
 ```
 
-## Reading
+## NPM - Demo
 
-* [SASS for Web Designers](https://abookapart.com/products/sass-for-web-designers) - finish reading
+* [Wintersmith](https://github.com/jnordberg/wintersmith)
+* [Pug](https://www.npmjs.com/package/pug), [Pug CLI](https://www.npmjs.com/package/pug-cli), [Pug article](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
+* [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
+* [CoffeeScript](http://coffeescript.org)
 
 ## Node Package Manager
 
 ```sh
-$ cd <PATH> 
-$ pwd // print working directory 
+$ cd <PATH>
+$ pwd // print working directory
 $ ls // list the files
 ```
 
@@ -28,7 +31,7 @@ $ npm init
 $ npm install browser-sync --save-dev
 ```
 
-`npm init` creates `package.json` and installs [Browser Sync](https://www.browsersync.io)  into the `node_modules` folder.
+`npm init` creates `package.json` and installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder.
 
 Create the NPM script:
 
@@ -79,13 +82,13 @@ Add `display: none` to the beta window and the show class to the css
 Code the .beta button to show the window.
 
 ```js
-var popoverWindow = document.querySelector('.betainfo')
-var betaButton = document.querySelector('.beta')
-betaButton.addEventListener('click', showPopover)
+var popoverWindow = document.querySelector('.betainfo');
+var betaButton = document.querySelector('.beta');
+betaButton.addEventListener('click', showPopover);
 
-function showPopover(){
-    popoverWindow.classList.toggle('show')
-    event.preventDefault()
+function showPopover() {
+    popoverWindow.classList.toggle('show');
+    event.preventDefault();
 }
 ```
 
@@ -121,15 +124,15 @@ Style it:
 Add functionality to the JavaScript:
 
 ```js
-var popoverWindow = document.querySelector('.betainfo')
-var betaButton = document.querySelector('.beta')
-var popoverCloseButton = document.querySelector('.closer')
-betaButton.addEventListener('click', showPopover)
-popoverCloseButton.addEventListener('click', showPopover)
+var popoverWindow = document.querySelector('.betainfo');
+var betaButton = document.querySelector('.beta');
+var popoverCloseButton = document.querySelector('.closer');
+betaButton.addEventListener('click', showPopover);
+popoverCloseButton.addEventListener('click', showPopover);
 
-function showPopover(){
-    popoverWindow.classList.toggle('show')
-    event.preventDefault()
+function showPopover() {
+    popoverWindow.classList.toggle('show');
+    event.preventDefault();
 }
 ```
 
@@ -146,7 +149,7 @@ Add styling:
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     height: 100vh;
     width: 100vw;
     display: none;
@@ -172,11 +175,9 @@ Add it to the script:
     }
 ```
 
-
 ## SASS
 
-[Syntactically Awesome Style Sheets](https://sass-lang.com) -  SASS [adds features](http://sass-lang.com/guide) to css.
-
+[Syntactically Awesome Style Sheets](https://sass-lang.com) - SASS [adds features](http://sass-lang.com/guide) to css.
 
 ### Free Apps
 
@@ -222,7 +223,6 @@ npm install concurrently --save-dev
   "boom!": "concurrently \"npm run start\" \"npm run startSass\" "
 },
 ```
-
 
 #### SASS variables:
 
@@ -280,8 +280,6 @@ header {
 
 `@import "imports/variables";`
 
-
-
 ## NOTES
 
 Variables for breakpoints and colors.
@@ -332,7 +330,7 @@ $green100: #339548;
 $red100: #cc3333;
 
 
-$blk-100: rgba(0,0,0,1); 
+$blk-100: rgba(0,0,0,1);
 $blk-095: rgba(0,0,0,0.95);
 $blk-090: rgba(0,0,0,0.90);
 $blk-085: rgba(0,0,0,0.85);
@@ -346,7 +344,7 @@ $blk-050: rgba(0,0,0,0.50);
 $blk-040: rgba(0,0,0,0.40);
 $blk-010: rgba(0,0,0,0.10);
 
-$gray-100: rgba(51,51,51,1); 
+$gray-100: rgba(51,51,51,1);
 $gray-095: rgba(51,51,51,0.95);
 $gray-090: rgba(51,51,51,0.90);
 $gray-085: rgba(51,51,51,0.85);
@@ -360,27 +358,3 @@ $gray-050: rgba(51,51,51,0.50);
 $gray-040: rgba(51,51,51,0.40);
 $gray-010: rgba(51,51,51,0.10);
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
