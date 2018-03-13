@@ -91,9 +91,6 @@ header h1 {
     font-size: 5rem;
     padding-left: 260px;
     padding-top: 90px;
-/*    position: absolute;
-    top: -100px;
-    left: -80px;*/
     transform: translate(-100px, -80px);
 }
 
@@ -180,7 +177,6 @@ article, aside {
 }
 
 footer {
-	/*clear: both;*/
 	background-color: var(--basil-green);
 	padding: 1rem;
 	border-radius: 0 0 4px 4px;
@@ -189,7 +185,6 @@ footer {
 @media (min-width: 600px){
 
 	.content {
-		/*background: url(img/html.png) repeat-y 50% 50%;*/
 		display: flex;
 	}
 	article {

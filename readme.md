@@ -11,6 +11,8 @@ box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
 
 ## NPM - Demo
 
+NPM case study - A static site generator.
+
 * [Wintersmith](https://github.com/jnordberg/wintersmith)
 * [Pug](https://www.npmjs.com/package/pug), [Pug CLI](https://www.npmjs.com/package/pug-cli), [Pug article](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
