@@ -2,54 +2,132 @@
 
 ## Homework
 
-Examine the modal window in [this article](https://css-tricks.com/receding-background-modal-boxes/). Here is the [finished sample](http://lab.hakim.se/avgrund/). Try to incorporate the following css properties into the modal we worked on in class.
+Edit the css for the Basilica site so the header and navigation work on a small screen. Try to incorporate the following css properties into the modal window we worked on in class.
+
+<!-- Examine the modal window in [this article](https://css-tricks.com/receding-background-modal-boxes/). Here is the [finished sample](http://lab.hakim.se/avgrund/). Try to incorporate the following css properties into the modal we worked on in class. -->
 
 ```css
 box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
 -webkit-filter: blur(5px) grayscale(50%);
 ```
 
-## NPM - Demo
+## Node Package Manager - Demo
 
-NPM case study - A static site generator.
+NPM case study - A static site generator. [What is a static site generator?](https://davidwalsh.name/introduction-static-site-generators)
 
 * [Wintersmith](https://github.com/jnordberg/wintersmith)
+* [Markdown](https://en.wikipedia.org/wiki/Markdown)
 * [Pug](https://www.npmjs.com/package/pug), [Pug CLI](https://www.npmjs.com/package/pug-cli), [Pug article](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
 * [CoffeeScript](http://coffeescript.org)
 
-## Node Package Manager
+## Node Package Manager - Setup
 
 ```sh
-$ cd <PATH>
-$ pwd // print working directory
-$ ls // list the files
+$ cd <PATH> // copy and paste the folder you want to go to
+$ cd ~ // go to your home directory
+$ cd Desk // tab completion
+$ cd .. // go up one level
+$ ls
+$ ls -al  // flags expand the command
+$ pwd
 ```
 
-Review `npm init` and npm install:
+Note: tab completion, `..` and copy paste.
+
+## Node Package Manager
+
+[Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem.
+
+`npm init` and npm install:
 
 ```sh
 $ npm init
 $ npm install browser-sync --save-dev
 ```
 
-`npm init` creates `package.json` and installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder.
+`npm init` creates `package.json` and `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder.
 
-Create the NPM script:
+Note:
+
+* package.json
+* dependencies
+* node_modules folder
+* discuss the need for `.gitignore`.
+
+### Editing package.json
+
+* [Browser Sync](https://www.browsersync.io) home page
+* Browser Sync [Github Repo](https://github.com/BrowserSync/browser-sync) for Browser Sync
+* Browser Sync [Command Line (CLI) documentation](https://www.browsersync.io/docs/command-line)
+
+Create the NPM script using the Browser Sync command line documentation:
 
 ```js
-"startSync": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
+  "scripts": {
+    "start": "browser-sync start --server 'app' --files 'app'"
+  },
+```
+
+Or, on a windows PC:
+
+```js
+"start": "browser-sync start --server \"app\" --files \"app\""
 ```
 
 And run the process:
 
 ```sh
-$ npm run startSync
+$ npm run start
+```
+
+Quit the process with Control-c. Try adding `--directory`:
+
+```js
+  "scripts": {
+    "startmac": "browser-sync start --directory --server 'app' --files 'app'",
+    "startpc": "browser-sync start --directory --server \"app\" --files \"app\""
+  },
+```
+
+And `--browser` options (note the PC browser):
+
+```js
+"startmac": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'"
+"startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
+```
+
+## CSS Grid
+
+Demo float vs flex for layout.
+
+Flexbox operates in a [single dimension](https://hackernoon.com/the-ultimate-css-battle-grid-vs-flexbox-d40da0449faf): x or y. CSS Grid operates in both.
+
+Our use of Flexbox to style the content columns operates in a single (horizontal or x) dimension. We can use CSS Grid but only need to specify one dimension.
+
+```css
+.content{
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  /*grid-template-rows: 20% 20% 20% 20% 20%;*/
+}
+article {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: span 3;
+}
+aside {
+    grid-row-start: 1;
+    grid-column-start: 4;
+    grid-column-end: span 2;
+}
 ```
 
 ## JavaScript
 
-Build the popover window:
+Build the popover window.
+
+Create and style a div on the bottom of the page.
 
 ```html
 <div class="betainfo">
@@ -70,6 +148,7 @@ Build the popover window:
     top: 50%;
     left: 50%;
     margin: -25% 0 0 -25%;
+    /*display: none;*/
 }
 ```
 
@@ -158,10 +237,11 @@ Add styling:
 }
 ```
 
+Change position absolute to position fixed and add a z-index.
+
 Add it to the script:
 
 ```js
-<script>
     var popoverWindow = document.querySelector('.betainfo')
     var betaButton = document.querySelector('.beta')
     var popoverCloseButton = document.querySelector('.closer')
@@ -181,29 +261,44 @@ Add it to the script:
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - SASS [adds features](http://sass-lang.com/guide) to css.
 
-### Free Apps
+It also provides us with a simple example of _trans-piling_, or _pre-processing_ (forms of compiling).
+
+### Alternative One - Apps
+
+* [Koala](http://koala-app.com)
+* [Scout app](http://scout-app.io/)
+
+For Scout the setup includes creating and defining an input folder for sass and an output folder for css.
 
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
-[Koala](http://koala-app.com)
+### Alternative Two - Node-sass
 
-[Scout app](http://scout-app.io/)
+You can also use NPM to install [node-sass](https://www.npmjs.com/package/node-sass) - not an app but the software both the above use. Use this via an npm script.
 
-[node-sass](https://www.npmjs.com/package/node-sass) - not an app but the software both the above use. We want to use this via an npm script.
+### Implementation Alternative One - App
 
-For Scout the setup includes creating and input folder for sass and an output folder for css.
+Create a `scss` directory at the top level of the project (the `session6` folder) and save `styles.css` into it _using the .scss suffix_ as `styles.scss`.
 
-### Node-sass
+Download and start Scout-App and select Add Project. Specify the `scss` folder as the input folder and the `css` folder in app as the output folder.
 
-Create a `scss` directory at the top level of the project and save styles.css into it using the .scss suffix.
+Test that the pre-processing is working by adding the following to the scss file:
+
+```css
+* { color red !important }
+```
+
+and then viewing the output.
+
+### Implementation Alternative Two - node-sass
 
 Install node-sass via NPM as a developmental dependency.
 
 Add a script for processing:
 
-```
+```js
   "scripts": {
-    "startSync": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'",
+    ...
     "startSass": "node-sass  --watch scss/styles.scss --output app/css/"
   },
 ```
@@ -214,24 +309,28 @@ Test it by running `$ npm run startSass` and adding to the scss file.
 
 We need to run both scripts at the same time.
 
-```
-npm install concurrently --save-dev
+```sh
+$ npm install concurrently --save-dev
 ```
 
-```
+```js
 "scripts": {
-  "start": "browser-sync start --browser 'google chrome' --server 'app' --files 'app'",
+  ...
   "startSass": "node-sass  --watch scss/styles.scss --output app/css/",
   "boom!": "concurrently \"npm run start\" \"npm run startSass\" "
 },
 ```
 
-#### SASS variables:
+#### SASS variables
 
+```sass
 $basil-green: #88a308;
 $breakpoint-med: 640px;
+```
 
-#### SASS nesting (do this one step at a time):
+#### SASS nesting 
+
+
 
 ```css
 header {
@@ -274,13 +373,17 @@ header {
 }
 ```
 
-#### SASS comments:
+#### SASS Comments
 
 `//` - JavaScript style. These comments do not get compiled into the css file. Traditional ones do.
 
-#### SASS includes
+#### SASS Partials and Imports
+
+Allow you to create separate function or feature specific style sheets using [imports](https://sass-lang.com/guide#topic-4)and helps maintain a large code base.
 
 `@import "imports/variables";`
+
+
 
 ## NOTES
 
