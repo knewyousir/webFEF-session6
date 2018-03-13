@@ -10,7 +10,8 @@ NPM case study - A static site generator. [What is a static site generator?](htt
 
 * [Wintersmith](https://github.com/jnordberg/wintersmith)
 * [Markdown](https://en.wikipedia.org/wiki/Markdown)
-* [Pug](https://www.npmjs.com/package/pug), [Pug CLI](https://www.npmjs.com/package/pug-cli), [Pug article](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
+* [Pug](https://www.npmjs.com/package/pug) is a kind of [template processor](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
+* [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
 * [CoffeeScript](http://coffeescript.org)
 
