@@ -1,15 +1,8 @@
-# VI - Basilica!
+# VI - Basilica!, CSS Grid, NPM and SASS
 
 ## Homework
 
-Edit the css for the Basilica site so the header and navigation work on a small screen. Try to incorporate the following css properties into the modal window we worked on in class.
-
-<!-- Examine the modal window in [this article](https://css-tricks.com/receding-background-modal-boxes/). Here is the [finished sample](http://lab.hakim.se/avgrund/). Try to incorporate the following css properties into the modal we worked on in class. -->
-
-```css
-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
--webkit-filter: blur(5px) grayscale(50%);
-```
+Edit the css for the Basilica site so the header and navigation work on a small screen using CSS Grid, SASS and Scout-App. Pay attention to the popover window. Try to avoid any horizontal scroll bars. 
 
 ## Node Package Manager - Demo
 
@@ -162,18 +155,41 @@ Add `display: none` to the beta window and the show class to the css
 
 Code the .beta button to show the window.
 
+Create a variable for the beta button, attach an event listener to it, and create a function to handle the event.
+
 ```js
-var popoverWindow = document.querySelector('.betainfo');
 var betaButton = document.querySelector('.beta');
+
 betaButton.addEventListener('click', showPopover);
 
 function showPopover() {
-    popoverWindow.classList.toggle('show');
+    alert('clicked');
     event.preventDefault();
 }
 ```
 
-### Another Close Method
+Edit the function to show the pop over window using classList.
+
+```js
+var popoverWindow = document.querySelector('.betainfo'); // NEW
+var betaButton = document.querySelector('.beta');
+
+betaButton.addEventListener('click', showPopover);
+
+function showPopover() {
+    popoverWindow.classList.toggle('show'); // NEW
+    event.preventDefault();
+}
+```
+
+Review:
+
+* Selecting items with [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector), see also [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll) (we'll work with this later)
+* Attaching events with [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events)
+* [Functions](https://developer.mozilla.org/en-US/docs/Glossary/Function)
+* Manipulating HTML with [classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/)
+
+### Add Another Close Method
 
 Add html to the betainfo:
 
@@ -202,14 +218,15 @@ Style it:
 }
 ```
 
-Add functionality to the JavaScript:
+Extend the functionality of the script.
 
 ```js
 var popoverWindow = document.querySelector('.betainfo');
 var betaButton = document.querySelector('.beta');
-var popoverCloseButton = document.querySelector('.closer');
+var popoverCloseButton = document.querySelector('.closer');  // NEW
+
 betaButton.addEventListener('click', showPopover);
-popoverCloseButton.addEventListener('click', showPopover);
+popoverCloseButton.addEventListener('click', showPopover);  // NEW
 
 function showPopover() {
     popoverWindow.classList.toggle('show');
@@ -321,6 +338,10 @@ $ npm install concurrently --save-dev
 },
 ```
 
+#### SASS Error Checking
+
+Intentionally create an error by removing the semi-colon from the first line in the scss file.
+
 #### SASS variables
 
 ```sass
@@ -375,7 +396,7 @@ header {
 
 #### SASS Comments
 
-`//` - JavaScript style. These comments do not get compiled into the css file. Traditional ones do.
+`//` - JavaScript style. These comments do not get compiled into the css file. Traditional CSS comments ( `/* ... */` ) do.
 
 #### SASS Partials and Imports
 
