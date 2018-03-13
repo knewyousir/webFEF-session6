@@ -21,19 +21,19 @@ NPM case study - A static site generator. [What is a static site generator?](htt
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
 * [CoffeeScript](http://coffeescript.org)
 
-## Node Package Manager - Setup
+## The Command Line
+
+* Note: Windows users might wish to check out [CMDER](http://cmder.net). Most of the commands below are different on Windows or have alternatives so let's use the Git Bash terminal (installed along with Git).
 
 ```sh
-$ cd <PATH> // copy and paste the folder you want to go to
 $ cd ~ // go to your home directory
+$ cd <PATH> // copy and paste the folder you want to go to
 $ cd Desk // tab completion
 $ cd .. // go up one level
 $ ls
 $ ls -al  // flags expand the command
 $ pwd
 ```
-
-Note: tab completion, `..` and copy paste.
 
 ## Node Package Manager
 
@@ -57,8 +57,8 @@ Note:
 
 ### Editing package.json
 
-* [Browser Sync](https://www.browsersync.io) home page
-* Browser Sync [Github Repo](https://github.com/BrowserSync/browser-sync) for Browser Sync
+We will be again using [Browser Sync](https://www.browsersync.io) as our sample application.
+
 * Browser Sync [Command Line (CLI) documentation](https://www.browsersync.io/docs/command-line)
 
 Create the NPM script using the Browser Sync command line documentation:
@@ -81,7 +81,7 @@ And run the process:
 $ npm run start
 ```
 
-Quit the process with Control-c. Try adding `--directory`:
+Quit the process with Control-c. Try adding a `--directory` option:
 
 ```js
   "scripts": {
@@ -99,7 +99,7 @@ And `--browser` options (note the PC browser):
 
 ## CSS Grid
 
-Demo float vs flex for layout.
+Review float vs flex for layout.
 
 Flexbox operates in a [single dimension](https://hackernoon.com/the-ultimate-css-battle-grid-vs-flexbox-d40da0449faf): x or y. CSS Grid operates in both.
 
@@ -242,19 +242,19 @@ Change position absolute to position fixed and add a z-index.
 Add it to the script:
 
 ```js
-    var popoverWindow = document.querySelector('.betainfo')
-    var betaButton = document.querySelector('.beta')
-    var popoverCloseButton = document.querySelector('.closer')
-    var shader = document.querySelector('.shader')
-    betaButton.addEventListener('click', showPopover)
-    popoverCloseButton.addEventListener('click', showPopover)
-    shader.addEventListener('click', showPopover)
+var popoverWindow = document.querySelector('.betainfo')
+var betaButton = document.querySelector('.beta')
+var popoverCloseButton = document.querySelector('.closer')
+var shader = document.querySelector('.shader')  // NEW
+betaButton.addEventListener('click', showPopover)
+popoverCloseButton.addEventListener('click', showPopover)
+shader.addEventListener('click', showPopover)  // NEW
 
-    function showPopover(){
-        popoverWindow.classList.toggle('show')
-        shader.classList.toggle('show')
-        event.preventDefault()
-    }
+function showPopover(){
+    popoverWindow.classList.toggle('show')
+    shader.classList.toggle('show')  // NEW
+    event.preventDefault()
+}
 ```
 
 ## SASS
