@@ -275,6 +275,109 @@ function showPopover(){
 }
 ```
 
+```js
+var betaButton = document.querySelector('.beta')
+// var shader = document.querySelector('.shader')
+betaButton.addEventListener('click', makePopover)
+
+function makePopover() {
+  var popover = document.createElement('div');
+  popover.classList.add('betainfo');
+  var popoverContent = `
+  <h2>In Beta</h2>
+  <p>Information about the beta program.<p>
+  <div class="closer" href="#0">
+  <div>✖︎</div>
+  </div>
+  `
+  popover.innerHTML = popoverContent;
+  document.querySelector('body').append(popover);
+  
+  var popoverCloseButton = document.querySelector('.closer')
+  popoverCloseButton.addEventListener('click', destroyPopover)
+
+  function destroyPopover() {
+    document.querySelector('.betainfo').remove();
+    event.preventDefault()
+  }
+}
+```
+
+```js
+document.addEventListener('click', decide, false)
+
+function decide() {
+  console.log(event.target);
+  if (event.target.matches('.beta')) {
+    makePopover();
+  }
+}
+```
+
+
+```html
+<nav>
+    <p>Bonjour Monsieur Ferme</p>
+    <ul>
+        <li class="nav-pickit"><a class="it" href="#">pick it</a></li>
+        <li class="nav-cookit"><a class="it" href="#">cook it</a></li>
+        <li class="nav-storeit"><a class="it" href="#">store it</a></li>
+    </ul>
+</nav>
+```
+
+
+```js
+var betaButton = document.querySelector('.beta')
+// var shader = document.querySelector('.shader')
+// betaButton.addEventListener('click', makePopover)
+
+var betaContent = `
+<h2>In Beta</h2>
+<p>Information about the beta program.<p>
+<div class="closer" href="#0">
+<div>✖︎</div>
+</div>
+`
+
+var itContent = `
+<h2>Coming Soon</h2>
+<p>This feature coming soon.<p>
+<div class="closer" href="#0">
+<div>✖︎</div>
+</div>
+`
+
+function makePopover(content) {
+  var popover = document.createElement('div');
+  popover.classList.add('betainfo');
+
+  popover.innerHTML = content;
+  document.querySelector('body').append(popover);
+  
+  var popoverCloseButton = document.querySelector('.closer')
+  popoverCloseButton.addEventListener('click', destroyPopover)
+
+  function destroyPopover() {
+    document.querySelector('.betainfo').remove();
+    event.preventDefault()
+  }
+}
+
+document.addEventListener('click', decide, false)
+
+function decide() {
+  console.log(event.target);
+  if (event.target.matches('.beta')) {
+    makePopover(betaContent);
+  } else if (event.target.matches('.it')) {
+    makePopover(itContent);
+  }
+}
+
+
+```
+
 ## SASS
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - SASS [adds features](http://sass-lang.com/guide) to css.
