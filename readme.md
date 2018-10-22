@@ -2,7 +2,9 @@
 
 ## Homework
 
-Edit the CSS for the Basilica site so the header and navigation work on a small screen using CSS Grid, SASS and Scout-App. Pay attention to the popover window. Try to avoid any horizontal scroll bars. 
+* Install VSCode on your computer
+* Create a free account on Github
+* Edit the CSS for the Basilica site so the header and navigation work on a small screen using CSS Grid, SASS and Scout-App. Pay attention to the popover window. Try to avoid any horizontal scroll bars. 
 
 <!-- ## Node Package Manager - case study
 
@@ -15,19 +17,25 @@ A static site generator. [What is a static site generator?](https://davidwalsh.n
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
 * [CoffeeScript](http://coffeescript.org) -->
 
-<!-- ## The Command Line -->
+## Command Line
 
 <!-- * Note: Windows users might wish to check out [CMDER](http://cmder.net). Most of the commands below are different on Windows or have alternatives so let's use the Git Bash terminal (installed along with Git). -->
 
-<!-- ```sh
+Navigate to today's project folder. Reference:
+
+```sh
 $ cd ~ // go to your home directory
-$ cd <PATH> // copy and paste the folder you want to go to
-$ cd Desk // tab completion
+$ cd // copy and paste the folder you want to go to (MacOS)
+$ cd ~/Desk // tab completion
 $ cd .. // go up one level
-$ ls
+$ ls // list files and folders
 $ ls -al  // flags expand the command
-$ pwd
-``` -->
+$ pwd // print working directory
+```
+
+## Git
+
+Initialize a new repository
 
 ## Node Package Manager
 
@@ -51,7 +59,7 @@ Note:
 
 ### Editing package.json
 
-We will be again using [Browser Sync](https://www.browsersync.io) as our sample application.
+We will again be using [Browser Sync](https://www.browsersync.io) as our sample application.
 
 * Browser Sync [Command Line (CLI) documentation](https://www.browsersync.io/docs/command-line)
 

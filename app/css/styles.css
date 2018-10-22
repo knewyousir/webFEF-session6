@@ -10,14 +10,6 @@ html {
     color: #fff;
 }
 
-.content:after {
-	content: '.';
-	clear: both;
-	display: block;
-	height: 0;
-	visibility: hidden;
-}
-
 
 html {
     box-sizing: border-box;
@@ -28,17 +20,21 @@ html {
     box-sizing: inherit;
 }
 
-
-img {
-	width: 100%;
-	height: auto;
+.cf::before,
+.cf::after {
+    content: ' ';
+    display: table;
 }
+
+.cf::after {
+    clear: both;
+}
+
 
 * {
 	margin: 0;
 	padding: 0;
 }
-
 
 body {
     font: 100%/1.5 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
@@ -46,6 +42,11 @@ body {
     max-width: 840px;
     margin: 0 auto;
     margin-top: 24px;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
 
 h2,
@@ -61,20 +62,25 @@ a {
     text-decoration: none;
     transition: color 0.5s linear;
 }
-.content a:hover {
+
+a:hover {
     color: #f00;
 }
+
 li > h4 {
     margin-top: 12px;
 }
+
 aside li {
     list-style: none;
 }
+
 article li,
 article ol {
     margin-left: 1rem;
     margin-bottom: 0.5rem;
 }
+
 
 header {
     position: relative;
@@ -89,29 +95,38 @@ header h1 {
     font-weight: normal;
     color: #fff;
     font-size: 5rem;
-    padding-left: 260px;
-    padding-top: 90px;
-    transform: translate(-100px, -80px);
 }
 
-.beta {
-	width: 85px;
-	height: 85px;
-	position: absolute;
-	top: -20px;
-	right: 10px;
-	background: url(img/burst.svg) no-repeat;
-	color: #fff;
-	font-size: 1.5rem;
-	text-align: center;
-	text-transform: uppercase;
-	line-height: 85px;
-	transform: rotate(20deg);
-	transition: all 1s ease;
+@media only screen and (min-width: 640px) {
+    header h1 {
+        padding-left: 240px;
+        padding-top: 90px;
+        transform: translate(-100px, -80px);
+        background-position: top left;
+    }
 }
-.beta:hover {
-	transform: rotate(0deg) scale(1.2)
+
+
+header a.beta {
+    background: url('img/burst.svg') no-repeat;
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    width: 85px;
+    height: 85px;
+    line-height: 85px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(20deg);
+    transition: all 1s ease;
 }
+
+header a.beta:hover {
+    transform: rotate(0deg) scale(1.2);
+}
+
 
 
 nav {
@@ -120,18 +135,28 @@ nav {
     padding: 0.5rem;
     display: flex;
     align-items: center;
+    /*position: -webkit-sticky;*/
 }
 
 nav ul {
-	display: flex;
+    display: flex;
 }
 
 nav li {
-	margin-right: 0.5rem;
-	list-style: none;
+    list-style: none;
+    margin-right: 0.5rem;
 }
+
 nav p {
-	margin-right: auto;
+    display: none;
+}
+
+
+@media only screen and (min-width: 640px) {
+    nav p {
+        margin-right: auto;
+        display: block;
+    }
 }
 
 nav a {
@@ -141,6 +166,8 @@ nav a {
     color: #fff;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
+    min-width: 100px;
+    display: inline-block;
 }
 
 .nav-storeit a {
@@ -167,33 +194,104 @@ nav a {
     background: linear-gradient(to bottom, #344e8b 1%, #6f89c7 100%);
 }
 
-.content {
 
-}
 
-article, aside {
-	padding: 16px;
-}
-
-footer {
-	background-color: var(--basil-green);
-	padding: 1rem;
-	border-radius: 0 0 4px 4px;
-}
 
 @media (min-width: 600px){
+    .content {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        /*grid-template-rows: 20% 20% 20% 20% 20%;*/
+    }
 
-	.content {
-		display: flex;
-	}
-	article {
-		flex: 1 0 60%;
-	}
-	aside {
-		background: #f5faef;
-		box-shadow: -4px 0px 4px #ddd;
-	}
+    article {
+        grid-column-start: 1;
+        grid-column-end: span 3;
+        grid-row-start: 1;
+        /*padding: 0.5rem;*/
+    }
+
+    aside {
+        grid-column-start: 4;
+        grid-column-end: span 2;
+        grid-row-start: 1;
+
+
+        background-color: #f5faef;
+        box-shadow: -4px 0px 4px #ddd;
+        padding: 0.5rem;
+    } 
 }
+
+
+
+footer {
+    clear: both;
+    background-color: var(--basil-green);
+    padding: 1rem;
+    border-radius: 0 0 4px 4px;
+}
+
+
+
+.closer {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fff;
+    border: 2px solid #eabc5a;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+.shader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+    display: none;
+}
+
+
+.betainfo {
+    width: 50%;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #eabc5a;
+    border-radius: 0.25rem;
+    position: fixed;
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    margin: -25% 0 0 -25%;
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
