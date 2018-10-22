@@ -4,22 +4,22 @@
 
 Edit the css for the Basilica site so the header and navigation work on a small screen using CSS Grid, SASS and Scout-App. Pay attention to the popover window. Try to avoid any horizontal scroll bars. 
 
-## Node Package Manager - Demo
+<!-- ## Node Package Manager - case study
 
-NPM case study - A static site generator. [What is a static site generator?](https://davidwalsh.name/introduction-static-site-generators)
+A static site generator. [What is a static site generator?](https://davidwalsh.name/introduction-static-site-generators)
 
 * [Wintersmith](https://github.com/jnordberg/wintersmith)
 * [Markdown](https://en.wikipedia.org/wiki/Markdown)
 * [Pug](https://www.npmjs.com/package/pug) is a kind of [template processor](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
 * [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
 * [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
-* [CoffeeScript](http://coffeescript.org)
+* [CoffeeScript](http://coffeescript.org) -->
 
-## The Command Line
+<!-- ## The Command Line -->
 
-* Note: Windows users might wish to check out [CMDER](http://cmder.net). Most of the commands below are different on Windows or have alternatives so let's use the Git Bash terminal (installed along with Git).
+<!-- * Note: Windows users might wish to check out [CMDER](http://cmder.net). Most of the commands below are different on Windows or have alternatives so let's use the Git Bash terminal (installed along with Git). -->
 
-```sh
+<!-- ```sh
 $ cd ~ // go to your home directory
 $ cd <PATH> // copy and paste the folder you want to go to
 $ cd Desk // tab completion
@@ -27,11 +27,11 @@ $ cd .. // go up one level
 $ ls
 $ ls -al  // flags expand the command
 $ pwd
-```
+``` -->
 
 ## Node Package Manager
 
-[Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem.
+<!-- [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. -->
 
 `npm init` and npm install:
 
