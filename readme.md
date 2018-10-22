@@ -121,21 +121,32 @@ Flexbox operates in a [single dimension](https://hackernoon.com/the-ultimate-css
 
 Our use of Flexbox to style the content columns operates in a single (horizontal or x) dimension. We can use CSS Grid but only need to specify one dimension.
 
+Note that in our document these are only used in wide screens:
+
 ```css
-.content{
-  display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  /*grid-template-rows: 20% 20% 20% 20% 20%;*/
-}
-article {
-    grid-row-start: 1;
-    grid-column-start: 1;
-    grid-column-end: span 3;
-}
-aside {
-    grid-row-start: 1;
-    grid-column-start: 4;
-    grid-column-end: span 2;
+@media (min-width: 600px){
+    .content {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        /*grid-template-rows: 20% 20% 20% 20% 20%;*/
+    }
+
+    article {
+        grid-column-start: 1;
+        grid-column-end: span 3;
+        grid-row-start: 1;
+        /*padding: 0.5rem;*/
+    }
+
+    aside {
+        grid-column-start: 4;
+        grid-column-end: span 2;
+        grid-row-start: 1;
+
+        background-color: #f5faef;
+        box-shadow: -4px 0px 4px #ddd;
+        padding: 0.5rem;
+    } 
 }
 ```
 
@@ -282,24 +293,204 @@ Change position absolute to position fixed and add a z-index.
 Add it to the script:
 
 ```js
-var popoverWindow = document.querySelector('.betainfo')
-var betaButton = document.querySelector('.beta')
-var popoverCloseButton = document.querySelector('.closer')
+var popoverWindow = document.querySelector('.betainfo'); // NEW
+var betaButton = document.querySelector('.beta');
+var popoverCloseButton = document.querySelector('.closer');  // NEW
 var shader = document.querySelector('.shader')  // NEW
-betaButton.addEventListener('click', showPopover)
-popoverCloseButton.addEventListener('click', showPopover)
+
+betaButton.addEventListener('click', showPopover);
+popoverCloseButton.addEventListener('click', showPopover);  // NEW
 shader.addEventListener('click', showPopover)  // NEW
 
-function showPopover(){
-    popoverWindow.classList.toggle('show')
+function showPopover() {
+    popoverWindow.classList.toggle('show'); // NEW
     shader.classList.toggle('show')  // NEW
-    event.preventDefault()
+    event.preventDefault();
 }
+```
+
+## A Dynamic Popover
+
+We will create a popover using only JavaScript. By making our popover dynamic we can reuse it for other use cases on our page.
+
+Comment out or delete the current div at the bottom of our page:
+
+``html
+<!-- <div class="betainfo">
+    <h2>In Beta</h2>
+    <p>Information about the beta program.<p>
+    <a class="closer" href="#0">X</a>
+</div> -->
+```
+
+### createElement
+
+You can use the `document.createElement()` method to create an element.
+
+```js
+var div = document.createElement('div');
+var link = document.createElement('a');
+var article = document.createElement('article');
+```
+
+You can manipulate an element created with `createElement()` like you would any other element in the DOM. Add classes, attributes, styles, and more.
+
+```js
+var div = document.createElement('div');
+div.className = 'new-div';
+div.id = 'new-div';
+div.setAttribute('data-div', 'new');
+div.style.color = '#fff';
+div.style.backgroundColor = 'rebeccapurple';
+```
+
+### append 
+
+After you create an element, you need a way to add it to your page. JavaScript provides a handful of methods you can use to add an element before, after, or within some other element in the DOM.
+
+```js
+// Create a new HTML element and add some text
+var div = document.createElement('div');
+div.textContent = 'Nice work, dude!';
+
+// Get the element to add your new HTML element before, after, or within
+var target = document.querySelector('#app');
+
+// Inject the `div` element before the `#app` element
+target.before(div);
+
+// Inject the `div` element after the `#app` element
+target.after(div);
+
+// Inject the `div` element before the first item *inside* the `#app` element
+target.prepend(div);
+
+// Inject the `div` element after the first item *inside* the `#app` element
+target.append(div);
+```
+
+### innerHTML
+
+The innerHTML property can be used to both get and set HTML content in an element.
+
+```js
+var elem = document.querySelector('.content');
+
+// Get HTML content
+var html = elem.innerHTML;
+
+// Set HTML content
+elem.innerHTML = 'We can dynamically change the HTML. We can even include HTML elements like <a href="#">this link</a>.';
+
+// Add HTML to the end of an element's existing content
+elem.innerHTML += ' Add this after what is already there.';
+
+// Add HTML to the beginning of an element's existing content
+elem.innerHTML = 'We can add this to the beginning. ' + elem.innerHTML;
+
+// You can inject entire elements into other ones, too
+elem.innerHTML += '<p>A new paragraph</p>';
+```
+
+Note: there is also an `innerText` property available. It works just like `innerHTML`, but only gets the text of an element and omits the markup. 
+
+Since we are creating our div we will delete the current div
+
+```html
+<div class="betainfo">
+    <h2>In Beta</h2>
+    <p>Information about the beta program.<p>
+    <a class="closer" href="#0">X</a>
+</div>
+```
+
+And overwrite the contents of `scripts.js` with the following:
+
+```js
+var betaButton = document.querySelector('.beta')
+betaButton.addEventListener('click', makePopover)
+
+function makePopover() {
+  var popover = document.createElement('div');
+  popover.classList.add('betainfo');
+  var popoverContent = '<h2>Testing</h2>';
+  popover.innerHTML = popoverContent;
+  document.querySelector('body').append(popover);
+}
+```
+
+Click on the beta button and note the div in the source html. 
+
+Remove the `display: none` property from the css:
+
+```css
+.betainfo {
+    width: 50%;
+    padding: 1rem;
+    background: #fff;
+    border: 2px solid #eabc5a;
+    border-radius: 0.25rem;
+    position: fixed;
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    margin: -25% 0 0 -25%;
+    /* display: none; */
+}
+```
+
+Let's add more content and our close button.
+
+
+
+```js
+var betaButton = document.querySelector('.beta')
+betaButton.addEventListener('click', makePopover)
+
+function makePopover() {
+  var popover = document.createElement('div');
+  popover.classList.add('betainfo');
+  var popoverContent = '<h2>Testing</h2><p>Information about the beta program.<p><div class="closer" href="#0"><div>✖︎</div></div>' ;
+  popover.innerHTML = popoverContent;
+  document.querySelector('body').append(popover);
+}
+```
+
+Note the long line - line number 7 - and that a string ( `' '` ) cannot be broken to make things easier to read. Fortunately we can use a template string instead ( note the use of back ticks):
+
+```js
+  var popoverContent = `
+  <h2>In Beta</h2>
+  <p>Information about the beta program.<p>
+  <div class="closer" href="#0">
+  <div>✖︎</div>
+  </div>
+  `
 ```
 
 ```js
 var betaButton = document.querySelector('.beta')
-// var shader = document.querySelector('.shader')
+betaButton.addEventListener('click', makePopover)
+
+function makePopover() {
+  var popover = document.createElement('div');
+  popover.classList.add('betainfo');
+    var popoverContent = `
+  <h2>In Beta</h2>
+  <p>Information about the beta program.<p>
+  <div class="closer" href="#0">
+    <div>✖︎</div>
+  </div>
+  `
+  popover.innerHTML = popoverContent;
+  document.querySelector('body').append(popover);
+}
+```
+
+Now, let's add the close functionality ('destroyPopover') back in:
+
+```js
+var betaButton = document.querySelector('.beta')
 betaButton.addEventListener('click', makePopover)
 
 function makePopover() {
@@ -309,7 +500,7 @@ function makePopover() {
   <h2>In Beta</h2>
   <p>Information about the beta program.<p>
   <div class="closer" href="#0">
-  <div>✖︎</div>
+    <div>✖︎</div>
   </div>
   `
   popover.innerHTML = popoverContent;
@@ -317,26 +508,105 @@ function makePopover() {
   
   var popoverCloseButton = document.querySelector('.closer')
   popoverCloseButton.addEventListener('click', destroyPopover)
+}
 
-  function destroyPopover() {
+function destroyPopover() {
     document.querySelector('.betainfo').remove();
     event.preventDefault()
-  }
+}
+```
+
+We are going to use a technique called 'event delegation' in order to further abstract the click event so we can use it elsewhere on the page.
+
+Replace the event listener and add a new function:
+
+```js
+// betaButton.addEventListener('click', makePopover)
+document.addEventListener('click', decide, false)
+
+function decide() {
+    console.log(event.target);
+}
+```
+
+Note that you can see whatever you click on in the console.
+
+### matches
+
+The `matches()` method lets you check if an element would be selected by a particular selector. It returns true if the element is a match, and false when it’s not. 
+
+```js
+var elem = document.querySelector('.click-me');
+
+// Match by an ID
+if (elem.matches('#first-button')) {
+    // Do something...
+}
+
+// Match by a class
+if (elem.matches('.button-submit')) {
+    // Do something...
+}
+
+// Match by a data attribute
+if (elem.matches('[data-click-me]')) {
+    // Do something...
+}
+
+// Match by a data attribute and value
+if (elem.matches('[data-click-me="button-submit"]')) {
+    // Do something...
+}
+
+// Match by multiple selectors
+// Returns true when element contains all selectors
+if (elem.matches('.click-me.button-submit[data-click-me]')) {
+    // Do something...
+}
+
+// Match by one of several selectors
+// Returns true when element contains at least one of the selectors
+if (elem.matches('.click-me, .button-submit, [data-click-me]')) {
+    // Do something...
 }
 ```
 
 ```js
-document.addEventListener('click', decide, false)
-
 function decide() {
-  console.log(event.target);
-  if (event.target.matches('.beta')) {
-    makePopover();
-  }
+    console.log(event.target);
+    if (event.target.matches('.beta')) {
+        makePopover();
+    } 
 }
 ```
 
+You can see that clicking on the x isn't working. Add a class to it:
 
+```js
+    var popoverContent = `
+    <h2>In Beta</h2>
+    <p>Information about the beta program.<p>
+    <div class="closer" href="#0">
+    <div class="closex">✖︎</div>
+    </div>
+    `
+```
+
+```js
+function decide() {
+    console.log(event.target);
+    if (event.target.matches('.beta')) {
+        makePopover();
+    } else if (even.target.matches('.closex')) {
+        destroyPopover()
+    }
+}
+```
+
+Let's use our new popover to display a message when the user clicks on any of the three nav buttons:
+
+
+Add a class `it` to each of the nav bottons:
 ```html
 <nav>
     <p>Bonjour Monsieur Ferme</p>
@@ -348,11 +618,11 @@ function decide() {
 </nav>
 ```
 
+Create two new variables with the text for our messages:
 
 ```js
-var betaButton = document.querySelector('.beta')
-// var shader = document.querySelector('.shader')
-// betaButton.addEventListener('click', makePopover)
+var betaButton = document.querySelector('.beta');
+document.addEventListener('click', decide, false);
 
 var betaContent = `
 <h2>In Beta</h2>
@@ -369,7 +639,51 @@ var itContent = `
 <div>✖︎</div>
 </div>
 `
+```
 
+Use the first new variable as the source for our popover content:
+
+```js
+function makePopover() {
+    var popover = document.createElement('div');
+    popover.classList.add('betainfo');
+    var popoverContent = betaContent; // NEW
+    popover.innerHTML = popoverContent;
+    document.querySelector('body').append(popover);
+    
+    var popoverCloseButton = document.querySelector('.closer')
+    popoverCloseButton.addEventListener('click', destroyPopover)
+}
+```
+
+Now let's decide which item is clicked on and use that to determine the message::
+
+```js
+function decide() {
+  console.log(event.target);
+  if (event.target.matches('.beta')) {
+    makePopover(betaContent);
+  } else if (event.target.matches('.it')) {
+    makePopover(itContent);
+  }
+}
+```
+
+The line `makePopover(itContent);` passes the variable we want to display to the makePopover function.
+
+Let's use that by first catching it or passing it in to the function as a variable:
+
+```js
+function makePopover(content) 
+```
+
+And then making the contents of the popover display based on the value of the variable:
+
+```js
+popover.innerHTML = content;
+```
+
+```js
 function makePopover(content) {
   var popover = document.createElement('div');
   popover.classList.add('betainfo');
@@ -396,36 +710,48 @@ function decide() {
     makePopover(itContent);
   }
 }
+```
 
+## Debugging
 
+Note that the popovers seem to accumulate. 
+
+Let's add a test to see if a popover already exists and detro it before creating a new one:
+
+```js
+function makePopover(content) {
+    if (document.querySelector('.betainfo')) { //NEW
+        destroyPopover(); //NEW
+    } //NEW
+    var popover = document.createElement('div');
+    popover.classList.add('betainfo');
+    var popoverContent = content;
+    popover.innerHTML = popoverContent;
+    document.querySelector('body').append(popover);
+    
+    var popoverCloseButton = document.querySelector('.closer')
+    popoverCloseButton.addEventListener('click', destroyPopover)
+}
 ```
 
 ## SASS
 
 [Syntactically Awesome Style Sheets](https://sass-lang.com) - SASS [adds features](http://sass-lang.com/guide) to css.
 
-It also provides us with a simple example of _trans-piling_, or _pre-processing_ (forms of compiling).
+You can use a dowloaded app to process SASS or use an NPM package.
 
-### Alternative One - Apps
+Apps that allow you to use SASS include:
 
 * [Koala](http://koala-app.com)
 * [Scout app](http://scout-app.io/)
 
-For Scout the setup includes creating and defining an input folder for sass and an output folder for css.
-
 (Note - on OSX you may need to right click and choose open rather than double click in order to run these.)
 
-### Alternative Two - Node-sass
+Setting up SASS always includes creating and defining an input folder for scss and an output folder for css.
 
-You can also use NPM to install [node-sass](https://www.npmjs.com/package/node-sass) - not an app but the software both the above use. Use this via an npm script.
-
-### Implementation Alternative One - App
-
-Create a `scss` directory at the top level of the project (the `session6` folder) and save `styles.css` into it _using the .scss suffix_ as `styles.scss`.
-
-Download and start Scout-App and select Add Project. Specify the `scss` folder as the input folder and the `css` folder in app as the output folder.
-
-Test that the pre-processing is working by adding the following to the scss file:
+* Create a `scss` directory at the _top level_ of the project folder
+* Save or copy `styles.css` into it as `styles.scss` - note the `.scss` suffix 
+* Run the SASS processor and test your setup by adding something like the following to the scss file:
 
 ```css
 * { color red !important }
@@ -433,22 +759,30 @@ Test that the pre-processing is working by adding the following to the scss file
 
 and then viewing the output.
 
-### Implementation Alternative Two - node-sass
+### Node-sass
+
+You can use NPM to install [node-sass](https://www.npmjs.com/package/node-sass) and use this via an npm script.
 
 Install node-sass via NPM as a developmental dependency.
+
+`npm install node-sass --save-dev`
 
 Add a script for processing:
 
 ```js
   "scripts": {
     ...
-    "startSass": "node-sass  --watch scss/styles.scss --output app/css/"
+    "startSass": "node-sass  --watch scss/styles.scss --output app/css/styles.css"
   },
 ```
 
 Node-sass CLI [documentation](https://github.com/sass/node-sass#command-line-interface)
 
-Test it by running `$ npm run startSass` and adding to the scss file.
+Test it by running `$ npm run startSass` and add the following to the `scss` file:
+
+```css
+* { color red !important }
+```
 
 We need to run both scripts at the same time.
 
