@@ -4,7 +4,8 @@
 
 * Install VSCode on your computer
 * Create a free account on Github
-* Edit the CSS for the Basilica site so the header and navigation work on a small screen using CSS Grid, SASS and Scout-App. Pay attention to the popover window. Try to avoid any horizontal scroll bars. 
+* Edit the CSS for the Basilica site so the header has no white space on top and rounded corners on a _small screen only_ using SASS. 
+* CHange the popover so it displays a different message for each of the three navigation buttons
 
 <!-- ## Node Package Manager - case study
 
@@ -815,68 +816,75 @@ $breakpoint-med: 640px;
 
 #### SASS nesting 
 
+Sass will let you nest your CSS selectors in a way that follows the same visual hierarchy of your HTML. Be aware that overly nested rules will result in over-qualified CSS that could prove hard to maintain and is generally considered bad practice.
 
+One of the best things about nesting in SASS is how it allows you to simplify media queries and keep them aligned with the selector.
 
 ```css
 header {
-    position: relative;
-    height: 120px;
-    background: $basil-green;
-    border-radius: 8px 8px 0px 0px;
-    h1 {
-        background: url(img/basil.png) no-repeat;
-        font-family: FuturaStdLight, sans-serif;
-        font-weight: normal;
-        color: #fff;
-        font-size: 5rem;
-        background-position: -20px -20px;
-        @media (min-width: $breakpoint-med) {
-            padding-left: 240px;
-            padding-top: 90px;
-            transform: translate(-100px, -80px);
-            background-position: top left;
-        }
+  position: relative;
+  height: 120px;
+  background: var(--basil-green);
+  border-radius: 8px 8px 0px 0px;
+  h1 {
+    background: url(img/basil.png) no-repeat;
+    font-family: FuturaStdLight, sans-serif;
+    font-weight: normal;
+    color: #fff;
+    font-size: 5rem;
+    @media (min-width: 640px){
+      padding-left: 240px;
+      padding-top: 90px;
+      transform: translate(-100px, -80px);
+      background-position: top left;
     }
-    a.beta {
-        background: url('img/burst.svg') no-repeat;
-        color: #fff;
-        font-size: 1.5rem;
-        position: absolute;
-        top: -20px;
-        right: 10px;
-        width: 85px;
-        height: 85px;
-        line-height: 85px;
-        text-align: center;
-        text-transform: uppercase;
-        transform: rotate(20deg);
-        transition: all 1s ease;
-        &:hover {
-            transform: rotate(0deg) scale(1.2);
-        }
+  }
+  .beta {
+    background: url('img/burst.svg') no-repeat;
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    width: 85px;
+    height: 85px;
+    line-height: 85px;
+    text-align: center;
+    text-transform: uppercase;
+    transform: rotate(20deg);
+    transition: all 1s ease;
+    &:hover {
+      transform: rotate(0deg) scale(1.2);
     }
+  }
 }
 ```
 
+Note the use of an ampersand for the hover pseudo selector.
+
 #### SASS Comments
 
-`//` - JavaScript style. These comments do not get compiled into the css file. Traditional CSS comments ( `/* ... */` ) do.
+`//` SASS allows you to use JavaScript style comments. These comments do not get compiled into the css file. Traditional CSS comments ( `/* ... */` ) do.
 
 #### SASS Partials and Imports
 
-Allow you to create separate function or feature specific style sheets using [imports](https://sass-lang.com/guide#topic-4)and helps maintain a large code base.
+Allow you to create separate function or feature specific style sheets using [imports](https://sass-lang.com/guide#topic-4) and helps maintain a large code base.
 
-`@import "imports/variables";`
+* Create `scss/imports`
+* Cut and copy the newly nested code for header into a new document `scss/imports/_header.scss`
+* import it into `styles.scss` by adding `@import "imports/header";` to the top of that file
 
+This also requires a slight alteration to the npm script for SASS. Quit the SASS processing and change it to read:
 
+`"startSass": "node-sass  --watch scss --output app/css/"`
 
-## NOTES
+#### SASS Variables
 
 Variables for breakpoints and colors.
 
 Example:
 
-```
+```css
 $break-five: 81.25em;
 // 1300px
 $break-four: 71.25em;
