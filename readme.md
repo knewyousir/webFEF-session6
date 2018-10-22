@@ -571,6 +571,8 @@ if (elem.matches('.click-me, .button-submit, [data-click-me]')) {
 }
 ```
 
+Add an `if` statement to run `makePopover` if the item clicked on (`event.target`) matches the beta button:
+
 ```js
 function decide() {
     console.log(event.target);
@@ -591,6 +593,8 @@ You can see that clicking on the x isn't working. Add a class to it:
     </div>
     `
 ```
+
+Then use it in an `else if` to remove the popover:
 
 ```js
 function decide() {
