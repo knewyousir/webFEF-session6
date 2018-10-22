@@ -1,4 +1,4 @@
-# VI - Basilica!, CSS Grid, NPM and SASS
+# VI - Basilica! JavaScript and SASS
 
 ## Homework
 
