@@ -2,7 +2,7 @@
 
 ## Homework
 
-Edit the css for the Basilica site so the header and navigation work on a small screen using CSS Grid, SASS and Scout-App. Pay attention to the popover window. Try to avoid any horizontal scroll bars. 
+Edit the CSS for the Basilica site so the header and navigation work on a small screen using CSS Grid, SASS and Scout-App. Pay attention to the popover window. Try to avoid any horizontal scroll bars. 
 
 <!-- ## Node Package Manager - case study
 
