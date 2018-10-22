@@ -35,7 +35,21 @@ $ pwd // print working directory
 
 ## Git
 
-Initialize a new repository
+Initialize a new local repository, add all the files to it, and do an initial commit:
+
+```sh
+$ git init
+$ git add .
+$ git commit -m 'Initial commit'
+```
+
+Create a new branch and check it out:
+
+```sh
+$ git branch <branchname>
+$ git checkout <branchname>
+$ git status
+```
 
 ## Node Package Manager
 
@@ -99,7 +113,7 @@ And `--browser` options (note the PC browser):
 "startpc": "browser-sync start --browser \"chrome.exe\" --server \"app\" --files \"app\""
 ```
 
-## CSS Grid
+## Review: CSS Grid
 
 Review float vs flex for layout.
 
@@ -125,7 +139,7 @@ aside {
 }
 ```
 
-## JavaScript
+## Review: JavaScript
 
 Build the popover window.
 
@@ -191,7 +205,7 @@ function showPopover() {
 }
 ```
 
-Review:
+## DOM Scripting Review:
 
 * Selecting items with [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector), see also [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll) (we'll work with this later)
 * Attaching events with [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events)
