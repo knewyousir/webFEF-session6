@@ -63,7 +63,7 @@ a {
     transition: color 0.5s linear;
 }
 
-a:hover {
+.content a:hover {
     color: #f00;
 }
 
@@ -81,7 +81,7 @@ article ol {
     margin-bottom: 0.5rem;
 }
 
-
+/* header */
 header {
     position: relative;
     height: 120px;
@@ -100,9 +100,10 @@ header h1 {
 @media only screen and (min-width: 640px) {
     header h1 {
         padding-left: 240px;
-        padding-top: 90px;
+        padding-top: 78px;
         transform: translate(-100px, -80px);
         background-position: top left;
+        font-size: 6rem;
     }
 }
 
@@ -127,7 +128,7 @@ header a.beta:hover {
     transform: rotate(0deg) scale(1.2);
 }
 
-
+/* navbar  */
 
 nav {
     background: #e4e1d1;
@@ -194,8 +195,12 @@ nav a {
     background: linear-gradient(to bottom, #344e8b 1%, #6f89c7 100%);
 }
 
+article, 
+aside {
+    padding: 0.75rem;
+}
 
-
+/* add styles to wider screens */
 
 @media (min-width: 600px){
     .content {
@@ -208,7 +213,6 @@ nav a {
         grid-column-start: 1;
         grid-column-end: span 3;
         grid-row-start: 1;
-        /*padding: 0.5rem;*/
     }
 
     aside {
@@ -216,14 +220,11 @@ nav a {
         grid-column-end: span 2;
         grid-row-start: 1;
 
-
         background-color: #f5faef;
         box-shadow: -4px 0px 4px #ddd;
-        padding: 0.5rem;
+        font-size: 90%;
     } 
 }
-
-
 
 footer {
     clear: both;
@@ -232,7 +233,7 @@ footer {
     border-radius: 0 0 4px 4px;
 }
 
-
+/* popover styles */
 
 .closer {
     position: absolute;
@@ -244,7 +245,7 @@ footer {
     border: 2px solid #eabc5a;
     border-radius: 50%;
     text-align: center;
-    line-height: 1.5rem;
+    line-height: 1.2rem;
 }
 
 .shader {
@@ -261,7 +262,7 @@ footer {
 
 .betainfo {
     width: 50%;
-    padding: 1rem;
+    padding: 0 1rem;
     background: #fff;
     border: 2px solid #eabc5a;
     border-radius: 0.25rem;
