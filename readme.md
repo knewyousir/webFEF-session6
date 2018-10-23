@@ -173,6 +173,46 @@ Let's edit it to use `fr` and `grid-column-gap`:
 }
 ```
 
+Note: while it is possible to use CSS Grid for the entire layout, it is not really necessary and adds unnecessary complexity:
+
+```css
+@media (min-width: 600px){
+    body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 120px 76px 1fr 160px;
+    }
+    header {
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
+    nav {
+        grid-column-start: 1;
+        grid-row-start: 2;
+    }
+    footer {
+        grid-column-start: 1;
+        grid-row-start: 4;
+    }
+    .content {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        grid-column-gap: 1rem;
+    }
+    article {
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
+    aside {
+        grid-column-start: 2;
+        grid-row-start: 1;
+        background-color: #f5faef;
+        box-shadow: -4px 0px 4px #ddd;
+        padding: 0.5rem;
+    } 
+}
+```
+
 ## Review: JavaScript
 
 Building the popover window.
