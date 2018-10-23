@@ -11,7 +11,9 @@
 
 <!-- * Note: Windows users might wish to check out [CMDER](http://cmder.net). Most of the commands below are different on Windows or have alternatives so let's use the Git Bash terminal (installed along with Git). -->
 
-Navigate to today's project folder. Reference:
+Navigate to today's project folder. 
+
+Reference:
 
 ```sh
 $ cd ~ // go to your home directory
