@@ -1,5 +1,7 @@
 # VI - Basilica! JavaScript and SASS
 
+rev 102318
+
 ## Homework
 
 * Install [VSCode](https://code.visualstudio.com/) on your computer
@@ -47,14 +49,13 @@ $ git status
 
 <!-- [Node Package Manager](https://www.npmjs.com) is an essential part of the web design and development ecosystem. -->
 
-`npm init` and npm install:
+`npm init` and `npm install`:
 
 ```sh
 $ npm init
+$ touch .gitignore // edit to add node_modules
 $ npm install browser-sync --save-dev
 ```
-
-`npm init` creates `package.json` and `npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) into the `node_modules` folder.
 
 Note:
 
@@ -62,6 +63,12 @@ Note:
 * dependencies
 * node_modules folder
 * discuss the need for `.gitignore`.
+
+`npm init` creates `package.json`.
+
+`touch .gitignore` creates the `.gitignore` file (you could do this in the editor as well)
+
+`npm install browser-sync --save-dev` installs [Browser Sync](https://www.browsersync.io) and creates the `node_modules` folder.
 
 ### Editing package.json
 
@@ -107,9 +114,9 @@ And `--browser` options (note the PC browser):
 
 ## Review: CSS Grid
 
-Review float vs flex for layout.
+The [CSS Grid Cheatsheet](https://css-tricks.com/snippets/css/complete-guide-grid/) on CSS Tricks.
 
-Flexbox operates in a [single dimension](https://hackernoon.com/the-ultimate-css-battle-grid-vs-flexbox-d40da0449faf): x or y. CSS Grid operates in both.
+Flexbox operates in a [single axis](https://hackernoon.com/the-ultimate-css-battle-grid-vs-flexbox-d40da0449faf). CSS Grid operates in both x and y.
 
 Our use of Flexbox to style the content columns operates in a single (horizontal or x) dimension. We can use CSS Grid but only need to specify one dimension.
 
@@ -142,9 +149,33 @@ Note that in our document these are only used in wide screens:
 }
 ```
 
+Let's edit it to use `fr` and `grid-column-gap`:
+
+```css
+@media (min-width: 600px){
+    .content {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        grid-column-gap: 1rem;
+        /*grid-template-rows: 20% 20% 20% 20% 20%;*/
+    }
+    article {
+        grid-column-start: 1;
+        grid-row-start: 1;
+    }
+    aside {
+        grid-column-start: 2;
+        grid-row-start: 1;
+        background-color: #f5faef;
+        box-shadow: -4px 0px 4px #ddd;
+        padding: 0.5rem;
+    } 
+}
+```
+
 ## Review: JavaScript
 
-Build the popover window.
+Building the popover window.
 
 Create and style a div on the bottom of the page.
 
@@ -179,7 +210,7 @@ Add `display: none` to the beta window and the show class to the css
 }
 ```
 
-Code the .beta button to show the window.
+Code the `.beta` button to show the window.
 
 Create a variable for the beta button, attach an event listener to it, and create a function to handle the event.
 
@@ -193,6 +224,8 @@ function showPopover() {
     event.preventDefault();
 }
 ```
+
+_Note the 'Event Listeners' list in the developer tools._
 
 Edit the function to show the pop over window using classList.
 
@@ -214,7 +247,7 @@ function showPopover() {
 * Use [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll) to find all matching elements on a page
 * Use [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), to listen for events on an element. You can find a full list of available events on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Events)
 * Use [Functions](https://developer.mozilla.org/en-US/docs/Glossary/Function) to store and execute your commands
-* Use[classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/) to add, remove, toggle and list classes
+* Use [classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/) to add, remove, toggle, list and test for classes:
 
 ```js
 if (elem.classList.contains('.betainfo')) {
@@ -229,8 +262,9 @@ Add html to the betainfo:
 ```html
 <div class="betainfo">
     <h2>In Beta</h2>
-    <p>Information about the beta program.<p>
-    <a class="closer" href="#0">X</a>
+    <p>Information about the beta program.</p>
+        <!-- NEW -->
+    <a class="closer" href="#0">X</a> 
 </div>
 ```
 
@@ -310,7 +344,7 @@ function showPopover() {
 
 ## A Dynamic Popover
 
-We will create a popover using only JavaScript. By making our popover dynamic we can reuse it for other use cases on our page.
+We will create the popover using JavaScript. By making our popover dynamic we will be able to reuse it elsewhere on our page.
 
 Comment out or delete the current div at the bottom of our page:
 
@@ -324,12 +358,11 @@ Comment out or delete the current div at the bottom of our page:
 
 ### createElement
 
-You can use the `document.createElement()` method to create an element.
+You can use the `document.createElement()` method to create an element. E.g.:
 
 ```js
-var div = document.createElement('div');
-var link = document.createElement('a');
-var article = document.createElement('article');
+> var div = document.createElement('div');
+> div
 ```
 
 You can manipulate an element created with `createElement()` like you would any other element in the DOM. Add classes, attributes, styles, and more.
@@ -348,23 +381,22 @@ div.style.backgroundColor = 'rebeccapurple';
 After you create an element, you need a way to add it to your page. JavaScript provides a handful of methods you can use to add an element before, after, or within some other element in the DOM.
 
 ```js
-// Create a new HTML element and add some text
-var div = document.createElement('div');
+// Create a new HTML element as above and add some text
 div.textContent = 'Nice work, dude!';
 
 // Get the element to add your new HTML element before, after, or within
-var target = document.querySelector('#app');
+var target = document.querySelector('.content');
 
-// Inject the `div` element before the `#app` element
+// Inject the `div` element before the element
 target.before(div);
 
-// Inject the `div` element after the `#app` element
+// Inject the `div` element after the element
 target.after(div);
 
-// Inject the `div` element before the first item *inside* the `#app` element
+// Inject the `div` element before the first item *inside* the element
 target.prepend(div);
 
-// Inject the `div` element after the first item *inside* the `#app` element
+// Inject the `div` element after the first item *inside* the element
 target.append(div);
 ```
 
@@ -391,9 +423,14 @@ elem.innerHTML = 'We can add this to the beginning. ' + elem.innerHTML;
 elem.innerHTML += '<p>A new paragraph</p>';
 ```
 
-Note: there is also an `innerText` property available. It works just like `innerHTML`, but only gets the text of an element and omits the markup. 
+Note: there is also an `innerText` property available. It works just like `innerHTML`, but only gets the text of an element and omits the markup.
 
-Since we are creating our div we will delete the current div
+```js
+var elem = document.querySelector('.content');
+elem.innerText = 'Welcome my friends to the show that never ends.';
+```
+
+Since we are creating our div we will delete the current div:
 
 ```html
 <div class="betainfo">
@@ -424,23 +461,12 @@ Remove the `display: none` property from the css:
 
 ```css
 .betainfo {
-    width: 50%;
-    padding: 1rem;
-    background: #fff;
-    border: 2px solid #eabc5a;
-    border-radius: 0.25rem;
-    position: fixed;
-    z-index: 2000;
-    top: 50%;
-    left: 50%;
-    margin: -25% 0 0 -25%;
+    ...
     /* display: none; */
 }
 ```
 
 Let's add more content and our close button.
-
-
 
 ```js
 var betaButton = document.querySelector('.beta')
@@ -449,13 +475,15 @@ betaButton.addEventListener('click', makePopover)
 function makePopover() {
   var popover = document.createElement('div');
   popover.classList.add('betainfo');
-  var popoverContent = '<h2>Testing</h2><p>Information about the beta program.<p><div class="closer" href="#0"><div>✖︎</div></div>' ;
+  var popoverContent = '<h2>Testing</h2><p>Information about the beta program.<p><div class="closer" href="#0"><div>✖︎</div></div>'; // NEW
   popover.innerHTML = popoverContent;
   document.querySelector('body').append(popover);
 }
 ```
 
-Note the long line - line number 7 - and that a string ( `' '` ) cannot be broken to make things easier to read. Fortunately we can use a template string instead ( note the use of back ticks):
+Note the long line - line number 7. A string ( `' '` ) cannot be broken to make things easier to read. Fortunately we can use a template string instead.
+
+Note the use of back ticks:
 
 ```js
   var popoverContent = `
@@ -505,10 +533,23 @@ function makePopover() {
   popover.innerHTML = popoverContent;
   document.querySelector('body').append(popover);
   
-  var popoverCloseButton = document.querySelector('.closer')
-  popoverCloseButton.addEventListener('click', destroyPopover)
+  var popoverCloseButton = document.querySelector('.closer') // NEW
+  popoverCloseButton.addEventListener('click', destroyPopover) // NEW
 }
+// NEW
+function destroyPopover() {
+    document.querySelector('.betainfo').remove();
+    event.preventDefault()
+}
+```
 
+Note that we do not create `var popoverCloseButton` or attach an event listener until we have created a popover. Otherwise we would get an error:
+
+```js
+var popoverCloseButton = document.querySelector('.closer') // NEW
+popoverCloseButton.addEventListener('click', destroyPopover) // NEW
+
+// NEW
 function destroyPopover() {
     document.querySelector('.betainfo').remove();
     event.preventDefault()
@@ -532,7 +573,7 @@ Note that you can see whatever you click on in the console.
 
 ### matches
 
-The `matches()` method lets you check if an element would be selected by a particular selector. It returns true if the element is a match, and false when it’s not. 
+The `matches()` method lets you check if an element would be selected by a particular selector. It returns true if the element is a match, and false when it’s not. It can be an alternative to using `element.classList.contains('.someclass')`.
 
 ```js
 var elem = document.querySelector('.click-me');
@@ -581,14 +622,14 @@ function decide() {
 }
 ```
 
-You can see that clicking on the x isn't working. Add a class to it:
+If clicking on the x isn't working you can add a class to it:
 
 ```js
     var popoverContent = `
     <h2>In Beta</h2>
     <p>Information about the beta program.<p>
     <div class="closer" href="#0">
-    <div class="closex">✖︎</div>
+    <div class="closex">✖︎</div> 
     </div>
     `
 ```
@@ -600,7 +641,7 @@ function decide() {
     console.log(event.target);
     if (event.target.matches('.beta')) {
         makePopover();
-    } else if (even.target.matches('.closex')) {
+    } else if (event.target.matches('.closex')) {
         destroyPopover()
     }
 }
@@ -624,14 +665,14 @@ Add a class `it` to each of the nav bottons:
 Create two new variables with the text for our messages:
 
 ```js
-var betaButton = document.querySelector('.beta');
+// var betaButton = document.querySelector('.beta');
 document.addEventListener('click', decide, false);
 
 var betaContent = `
 <h2>In Beta</h2>
 <p>Information about the beta program.<p>
 <div class="closer" href="#0">
-<div>✖︎</div>
+<div class="closex">✖︎</div>
 </div>
 `
 
@@ -639,7 +680,7 @@ var itContent = `
 <h2>Coming Soon</h2>
 <p>This feature coming soon.<p>
 <div class="closer" href="#0">
-<div>✖︎</div>
+<div class="closex">✖︎</div>
 </div>
 `
 ```
@@ -663,12 +704,14 @@ Now let's decide which item is clicked on and use that to determine the message:
 
 ```js
 function decide() {
-  console.log(event.target);
-  if (event.target.matches('.beta')) {
-    makePopover(betaContent);
-  } else if (event.target.matches('.it')) {
-    makePopover(itContent);
-  }
+    console.log(event.target);
+    if (event.target.matches('.beta')) {
+        makePopover(betaContent); // NEW
+    } else if (event.target.matches('.it')) { // NEW
+        makePopover(itContent); // NEW
+    } else if (event.target.matches('.closex')) {
+        destroyPopover()
+    }
 }
 ```
 
@@ -680,46 +723,79 @@ Let's use that by first catching it or passing it in to the function as a variab
 function makePopover(content) 
 ```
 
-And then making the contents of the popover display based on the value of the variable:
+And then making the contents of the popover dependent on the value of the variable:
 
 ```js
-popover.innerHTML = content;
+popover.innerHTML = content; 
 ```
 
+Because we are using event delegation we can remove the following
+
 ```js
-function makePopover(content) {
-  var popover = document.createElement('div');
-  popover.classList.add('betainfo');
+// var popoverCloseButton = document.querySelector('.closer')
+// popoverCloseButton.addEventListener('click', destroyPopover)
+```
 
-  popover.innerHTML = content;
-  document.querySelector('body').append(popover);
-  
-  var popoverCloseButton = document.querySelector('.closer')
-  popoverCloseButton.addEventListener('click', destroyPopover)
+Here is the final script:
 
-  function destroyPopover() {
-    document.querySelector('.betainfo').remove();
-    event.preventDefault()
-  }
-}
+```js
+document.addEventListener('click', decide, false);
 
-document.addEventListener('click', decide, false)
+var betaContent = `
+<h2>In Beta</h2>
+<p>Information about the beta program.<p>
+<div class="closer" href="#0">
+<div class="closex">✖︎</div>
+</div>
+`
+
+var itContent = `
+<h2>Coming Soon</h2>
+<p>This feature coming soon.<p>
+<div class="closer" href="#0">
+<div class="closex">✖︎</div>
+</div>
+`
 
 function decide() {
-  console.log(event.target);
-  if (event.target.matches('.beta')) {
-    makePopover(betaContent);
-  } else if (event.target.matches('.it')) {
-    makePopover(itContent);
+    console.log(event.target);
+    if (event.target.matches('.beta')) {
+        makePopover(betaContent); 
+    } else if (event.target.matches('.it')) { 
+        makePopover(itContent); 
+    } else if (event.target.matches('.closex')) {
+        destroyPopover()
+    }
+}
+
+function makePopover(content) { 
+    if (document.querySelector('.betainfo')) {
+        destroyPopover();
+    }
+    var popover = document.createElement('div');
+    popover.classList.add('betainfo');
+  
+    popover.innerHTML = content; 
+    document.querySelector('body').append(popover);
+  
+    function destroyPopover() {
+      document.querySelector('.betainfo').remove();
+      event.preventDefault()
+    }
   }
+
+function destroyPopover() {
+    event.preventDefault()
+    var targetElem = document.querySelector('.betainfo')
+    targetElem.remove();
 }
 ```
 
 ## Debugging
 
-Note that the popovers seem to accumulate. 
+Note that the popovers seem to accumulate and become difficult to destroy. 
 
-Let's add a test to see if a popover already exists and detro it before creating a new one:
+Let's add a test to see if a popover already exists and destroy it before creating a new one:
 
 ```js
 function makePopover(content) {
