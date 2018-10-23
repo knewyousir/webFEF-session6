@@ -6,7 +6,7 @@ rev 102318
 
 * Install [VSCode](https://code.visualstudio.com/) on your computer
 * Create a free account on [Github](https://github.com/)
-* Edit the CSS for the Basilica site so the header has no white space on top and rounded corners on a _small screen only_ using SASS. 
+* Edit the CSS for the Basilica site so the header has no white space on top and no rounded corners on a _small screen only_ using *SASS*. 
 * Change the popover behavior so it displays a different message for each of the three navigation buttons
 
 ## Command Line
