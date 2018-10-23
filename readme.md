@@ -2,21 +2,10 @@
 
 ## Homework
 
-* Install VSCode on your computer
-* Create a free account on Github
+* Install [VSCode](https://code.visualstudio.com/) on your computer
+* Create a free account on [Github](https://github.com/)
 * Edit the CSS for the Basilica site so the header has no white space on top and rounded corners on a _small screen only_ using SASS. 
-* CHange the popover so it displays a different message for each of the three navigation buttons
-
-<!-- ## Node Package Manager - case study
-
-A static site generator. [What is a static site generator?](https://davidwalsh.name/introduction-static-site-generators)
-
-* [Wintersmith](https://github.com/jnordberg/wintersmith)
-* [Markdown](https://en.wikipedia.org/wiki/Markdown)
-* [Pug](https://www.npmjs.com/package/pug) is a kind of [template processor](https://en.wikipedia.org/wiki/Template_processor), it is one of [many](https://colorlib.com/wp/top-templating-engines-for-javascript/)
-* [Article on pug](https://codeburst.io/getting-started-with-pug-template-engine-e49cfa291e33) (aka Jade)
-* [Pug online demo](http://aramboyajyan.github.io/online-jade-template-editor/)
-* [CoffeeScript](http://coffeescript.org) -->
+* Change the popover behavior so it displays a different message for each of the three navigation buttons
 
 ## Command Line
 
@@ -219,10 +208,17 @@ function showPopover() {
 
 ## DOM Scripting Review:
 
-* Selecting items with [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector), see also [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll) (we'll work with this later)
-* Attaching events with [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), see also [event types](https://developer.mozilla.org/en-US/docs/Web/Events)
-* [Functions](https://developer.mozilla.org/en-US/docs/Glossary/Function)
-* Manipulating HTML with [classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/)
+* Use [querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) to find the first matching element on a page `var popoverWindow = document.querySelector('.betainfo');`
+* Use [querySelectorAll()](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll) to find all matching elements on a page
+* Use [addEventListener('event', function)](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener), to listen for events on an element. You can find a full list of available events on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/Events)
+* Use [Functions](https://developer.mozilla.org/en-US/docs/Glossary/Function) to store and execute your commands
+* Use[classList](https://plainjs.com/javascript/attributes/adding-removing-and-testing-for-classes-9/) to add, remove, toggle and list classes
+
+```js
+if (elem.classList.contains('.betainfo')) {
+    // Do something...
+}
+```
 
 ### Add Another Close Method
 
@@ -316,7 +312,7 @@ We will create a popover using only JavaScript. By making our popover dynamic we
 
 Comment out or delete the current div at the bottom of our page:
 
-``html
+```html
 <!-- <div class="betainfo">
     <h2>In Beta</h2>
     <p>Information about the beta program.<p>
